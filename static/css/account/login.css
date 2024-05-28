@@ -1,0 +1,73 @@
+/* mobile view */
+@media screen and (max-width: 576px) {
+	.login-form {
+		margin-top: 5em;
+		padding: 1em;
+		height: auto;
+	}
+
+	#id_login, #id_password {
+		width: 93%;
+	}
+}
+
+
+/* desktop view */
+@media screen and (min-width: 577px) {
+	.login-form {
+		width: 25em;
+		height: auto;
+		margin-top: 2.5em;
+	}
+
+	#id_login, #id_password {
+		width: 90%;
+	}
+}
+
+
+/* general view */
+label, #id_remember{
+	display: none
+}
+
+.login-form {
+	background-color: var(--white-trans);
+}
+
+#id_login:focus, #id_password:focus {
+	outline: none;
+}
+
+#id_password_helptext {
+	display: flex;
+	width: fit-content;
+	margin: 0 auto;
+}
+
+#id_login, #id_password {
+	display: block;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 25px;
+	font-size: 18px;
+	margin: 0 auto;
+	padding-left: 1em;
+}
+
+#id_password {
+	margin-bottom: 20px;
+}
+
+.btn-custom {
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 0.5rem 2rem;
+	font-size: 18px;
+}
+
+.link {
+	color: var(--primary-color);
+}

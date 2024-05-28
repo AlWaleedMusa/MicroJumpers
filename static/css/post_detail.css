@@ -1,0 +1,15 @@
+@media screen and (max-width: 576px){
+    .post-image {
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 576px){
+    .post-image {
+        height: 600px;
+    }
+}
+.post-image {
+    width: 100%;
+    object-fit: fill;
+}

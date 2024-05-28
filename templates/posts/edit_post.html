@@ -1,0 +1,41 @@
+{% extends "layouts/base.html" %}
+{% block head_title %}
+Edit Post
+{% endblock head_title %}
+{% load widget_tweaks %}
+
+{% block content %}
+<!-- Edit a post -->
+<div class="row d-flex justify-content-center mt-3">
+    <div
+        class="col-lg-8 col-11 border border-light-subtle bg-light p-3 rounded"
+    >
+        <h3>Edit Post</h3>
+        <form
+            hx-post="{% url 'edit_post' post.id %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            {% render_field form.title class='form-control' placeholder='Title' %}
+            {% render_field form.tags class="form-control mt-2" placeholder="iPhone, Microsoldering, HelpNeeded, QA" %}
+            {% render_field form.uploaded_image class='form-control mt-2 mb-2' %}
+            {% render_field form.body %}
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn me-2" style="background-color: var(--primary-color); color: white; font-weight: 500;">
+                    Save
+                </button>
+                <a
+                    hx-get="{% url 'post_detail' post.id %}"
+                    hx-target="#main-content"
+                    hx-swap="innerHTML"
+                    class="btn text-white"
+                    style="background-color: grey; font-weight: 500;"
+                    >Back</a
+                >
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

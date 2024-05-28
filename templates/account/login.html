@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+<!-- navbar -->
+    {% include 'includes/navbar-landing.html' %}
+<!-- end of navbar -->
+
+<!-- login -->
+<div class="container">
+    <div class="row">
+        <div class="login-form col-md-6 col-10 mx-auto p-md-4 rounded">
+            <h2 class="text-center pb-4 pt-3 fw-bold">Login</h2>
+            <form method="post">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="btn-custom d-block mx-auto mt-4">
+                    Login
+                </button>
+            </form>
+            <p class="text-center mt-3 text-muted">
+                Don't have an account?
+                <a class="link" href="{% url 'account_signup' %}"
+                    >Register</a
+                >
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end of login -->
+
+{% endblock content %}

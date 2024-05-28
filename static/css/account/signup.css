@@ -1,0 +1,84 @@
+/* mobile view */
+@media screen and (max-width: 576px) {
+	.register-form {
+		margin-top: 1.5em;
+		padding-bottom: .5em;
+		width: 90%;
+	}
+
+	#id_username, #id_email, #id_password1, #id_password2 {
+		width: 95%;
+		margin: 0 auto;
+	}
+}
+
+
+/* mid view */
+@media screen and (min-width:576px) and (max-width: 769px) {
+	.register-form {
+		width: 80%;
+	}
+
+	#id_username, #id_email, #id_password1, #id_password2 {
+		width: 95%;
+	}
+}
+
+
+/* large view */
+@media screen and (min-width:769px) and (max-width: 992px) {
+	.register-form {
+		width: 60%;
+	}
+
+	#id_username, #id_email, #id_password1, #id_password2 {
+		width: 95%;
+	}
+
+	.row {
+		height: 80vh;
+		display: flex;
+		align-items: center;
+		margin-top: -2em;
+	}
+}
+
+
+ /* desktop view */
+ @media screen and (min-width: 992px) {
+	.register-form {
+		width: 40%;
+	}
+
+	.row {
+		height: 80vh;
+		display: flex;
+		align-items: center;
+		margin-top: -2em;
+	}
+
+	#id_username, #id_email, #id_password1, #id_password2 {
+		width: 95%;
+	}
+}
+
+
+/* general view */
+.register-form {
+	background-color: var(--white-trans);
+	height:auto;
+}
+
+#id_username, #id_email, #id_password1, #id_password2 {
+	display: block;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 25px;
+	font-size: 17px;
+	margin: 0 auto;
+	padding-left: 1em;
+}
+
+#id_username:focus, #id_email:focus, #id_password1:focus, #id_password2:focus {
+	outline: none;
+}

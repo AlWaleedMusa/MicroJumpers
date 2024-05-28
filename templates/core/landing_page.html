@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+
+<!-- navbar -->
+    {% include 'includes/navbar-landing.html' %}
+<!-- end of navbar -->
+
+<!-- hero section -->
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 col mx-auto text-center mt-3 pt-3">
+                <p class="big-header pt-md-5">Fixing Phones & Building Bonds</p>
+                <p class="small-text">
+                    a hub where we offer solutions for every phone hiccup, from
+                    software tweaks to micro soldering, our community driven
+                    platform is your go to resource join us to learn, share, and
+                    conquer mobile challenges
+                </p>
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="{% url 'account_signup' %}" class="btn me-3" style="font-weight: 500;">Join now</a>
+                    <a href="{% url 'account_login' %}" class="btn" style="font-weight: 500;">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end of hero section -->
+{% endblock %}

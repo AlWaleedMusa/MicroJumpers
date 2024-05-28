@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block head_title %}
+Delete comment
+{% endblock head_title %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row mt-md-0 mt-5 pt-5">
+        <div class="col text-center">
+            <h1>Delete Comment</h1>
+            <p>Are you sure you want to <span class="text-danger">Delete</span> this comment?</p>
+            <form
+                hx-post="{% url 'delete_comment' comment.id %}"
+                hx-target="#main-content"
+                hx-swap="innerHTML"
+                >
+                {% csrf_token %}
+                <button type="submit" class="btn text-center text-white" style="font-weight: 500; background-color: var(--primary-color);">Yes</button>
+                <a
+                    hx-get="{% url 'post_detail' comment.post.id %}"
+                    hx-target="#main-content"
+                    hx-swap="innerHTML"
+                    class="btn text-center ms-2 text-white" style="background-color: grey;">No</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

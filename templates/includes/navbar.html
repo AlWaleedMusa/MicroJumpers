@@ -1,0 +1,62 @@
+<div
+    class="d-flex justify-content-between"
+    style="background-color: var(--secondary-color); position: sticky; top: 0; z-index: 1000;"
+>
+    <div>{% include 'includes/navbar-landing.html' %}</div>
+    <div class="align-content-center pe-2 d-lg-none">
+        <svg
+            id="dropdown-icon"
+            width="46"
+            height="46"
+            viewBox="0 0 46 46"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M9.58325 13.4167H36.4166"
+                stroke="white"
+                stroke-width="3.83333"
+                stroke-linecap="round"
+            />
+            <path
+                d="M9.58325 23H36.4166"
+                stroke="white"
+                stroke-width="3.83333"
+                stroke-linecap="round"
+            />
+            <path
+                d="M9.58325 32.5833H36.4166"
+                stroke="white"
+                stroke-width="3.83333"
+                stroke-linecap="round"
+            />
+        </svg>
+    </div>
+    <div class="navbar-items d-lg-block d-none my-auto">
+        <a href="">Bookmarks</a>
+        <a href="">Profile</a>
+        <a
+            hx-get="{% url 'account_logout' %}"
+            hx-swap="outerHTML"
+            hx-target="#main-content"
+            class="logout-menu-item"
+            style="cursor: pointer; color: white;"
+        >Logout</a>
+    </div>
+</div>
+
+<!-- navbar -->
+    <!-- mobile view menu -->
+    <div id="menu-items" class="d-none">
+        <ul>
+            <a href="#" style="cursor: pointer; color: var(--secondary-color);"><li>Profile</li></a>
+            <a href="#" style="cursor: pointer; color: var(--secondary-color);"><li>Bookmarks</li></a>
+            <a
+                hx-get="{% url 'account_logout' %}"
+                hx-swap="outerHTML"
+                hx-target="#main-content"
+                style="cursor: pointer; color: var(--secondary-color);"><li>Logout</li></a>
+        </ul>
+    </div>
+    <!-- end of mobile view menu -->
+<!-- end of navbar -->

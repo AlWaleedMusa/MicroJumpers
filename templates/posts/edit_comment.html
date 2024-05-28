@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% block head_title %}
+Edit comment
+{% endblock head_title %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="row d-flex justify-content-center mt-3">
+    <div
+        class="col-lg-8 col-11 border border-light-subtle bg-light p-3 rounded"
+    >
+        <h3>Edit Comment</h3>
+        <form
+            hx-post="{% url 'edit_comment' comment.id %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
+        >
+            {% csrf_token %} {% render_field form.body %}
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn me-2" style="background-color: var(--primary-color); color: white; font-weight: 500;">
+                    Save
+                </button>
+                <a
+                    hx-get="{% url 'post_detail' comment.post.id %}"
+                    hx-target="#main-content"
+                    hx-swap="innerHTML"
+                    class="btn text-white"
+                    style="background-color: grey; font-weight: 500;"
+                    >Back</a
+                >
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
