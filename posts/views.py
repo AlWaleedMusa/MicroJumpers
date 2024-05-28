@@ -49,12 +49,14 @@ def post_detail(request, pk):
     tags = post.tags.all()
     comment_form = CommentCreation()
     comments = Comments.objects.filter(post=post)
+    related_posts = Posts.objects.filter(tags__in=tags).exclude(id=pk).distinct()[:5]
 
     context = {
         "post": post,
         "tags": tags,
         "comment_form": comment_form,
         "comments": comments,
+        "related_posts": related_posts,
     }
     return render(request, "posts/post_detail.html", context)
 
