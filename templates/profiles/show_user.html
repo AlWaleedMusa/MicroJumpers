@@ -1,0 +1,123 @@
+{% extends "layouts/base.html" %}
+{% block head_title %}
+Profile - {{ profile.user.username }}
+{% endblock head_title %}
+
+{% block content %}
+
+<style>
+    .sidebar {
+        position: fixed;
+        width: 240px;
+    }
+
+    #main-profile {
+        margin-left: 230px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row align-items-start mt-1 d-none d-lg-flex">
+        <div
+            class="col-lg-2 mt-2 p-3 d-flex flex-column align-items-center sidebar"
+            style="height: 85vh; border-right: 1px solid lightgray;">
+            <!-- search bar -->
+            <div class="p-2 mb-3">
+                <div class="d-flex">
+                    <input
+                        hx-get="{% url 'search-profile' request.user.username %}"
+                        hx-target="#main-profile"
+                        hx-swap="innerHTML"
+                        hx-trigger="keyup changed delay:500ms"
+                        class="form-control me-2 "
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                        name="search"
+                    />
+                </div>
+            </div>
+            <!-- end of search bar -->
+            <img
+                class="rounded-circle mx-auto d-block"
+                src="/static/images/tester1.jpg" alt=""
+                style="width: 100px; height: 100px; object-fit: cover;"
+            >
+            <h3 class="pt-3">{{ profile.user.username }}</h3>
+            <span class="badge text-bg-success">Rookie</span>
+            <p class="text-muted p-2 border-bottom">Joined: {{ profile.user.date_joined|date:"F d, Y" }}</p>
+            <div>
+                <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                    </svg>
+                    <a class="ps-3 text-start text-muted" style="cursor: pointer;">Settings</a>
+                </div>
+                <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                    </svg>
+                    <a
+                        hx-get="{% url 'user_posts' request.user.username %}"
+                        hx-target="#main-profile"
+                        hx-swap="innerHTML"
+                        class="ps-3 text-start text-muted" style="cursor: pointer;">My Posts</a>
+                </div>
+                <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+                        <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1z"/>
+                        <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1"/>
+                    </svg>
+                    <a
+                        hx-get="{% url 'bookmarks' request.user.username %}"
+                        hx-target="#main-profile"
+                        hx-swap="innerHTML"
+                        class="ps-3 text-start text-muted" style="cursor: pointer;">Bookmarks</a>
+                </div>
+            </div>
+        </div>
+        <div id="main-profile" class="col">
+            
+        </div>
+        <!-- <div id="profile-content" class="col-lg-6">
+            <input
+                class="form-control bg-white"
+                disabled
+                type="email"
+                value="{{ profile.email }}"
+                placeholder="Email"
+            />
+            <input
+                class="form-control mt-2 bg-white"
+                disabled
+                type="text"
+                value="{{ profile.first_name }}"
+                placeholder="First name"
+            />
+            <input
+                class="form-control mt-2 bg-white"
+                disabled
+                type="text"
+                value="{{ profile.last_name }}"
+                placeholder="Last name"
+            />
+            <input
+                class="form-control mt-2 bg-white"
+                disabled
+                type="text"
+                value="{{ profile.location }}"
+                placeholder="Location"
+            />
+            <textarea
+                class="form-control mt-2 bg-white"
+                rows="4"
+                disabled
+                type="text"
+                placeholder="Bio"
+            >{{ profile.bio }}</textarea>
+        </div> -->
+    </div>
+</div>
+
+{% endblock %}
