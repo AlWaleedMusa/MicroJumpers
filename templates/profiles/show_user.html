@@ -40,7 +40,7 @@ Profile - {{ profile.user.username }}
             <!-- end of search bar -->
             <img
                 class="rounded-circle mx-auto d-block"
-                src="/static/images/tester1.jpg" alt=""
+                src="{{ profile.image.url }}" alt=""
                 style="width: 100px; height: 100px; object-fit: cover;"
             >
             <h3 class="pt-3">{{ profile.user.username }}</h3>

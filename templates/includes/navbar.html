@@ -39,16 +39,16 @@
             >{{ profile.user.username }}</a>
         <img
             class="rounded-circle me-3"
-            src="/static/images/tester1.jpg" alt=""
+            src="{{ profile.image.url }}" alt=""
             style="width: 40px; height: 40px; object-fit: cover;">
     </div>
 </div>
 <div
     class="profile-menu-list d-none p-4 mt-2 text-center d-flex flex-column align-items-center"
-    style="width: fit-content; max-width: 300px; border-radius: 10px ;background-color: rgba(255, 255, 255, 0.85); position: absolute; right: 45px; z-index: 1000;">
+    style="width: fit-content; max-width: 300px; border-radius: 10px ;background-color: rgba(255, 255, 255, 0.9); position: absolute; right: 45px; z-index: 1000;">
     <img
         class="rounded-circle mx-auto d-block"
-        src="/static/images/tester1.jpg" alt=""
+        src="{{ profile.image.url }}" alt=""
         style="width: 100px; height: 100px; object-fit: cover;"
     >
     <h4 class="pt-3">{{ profile.user.username }}</h4>
