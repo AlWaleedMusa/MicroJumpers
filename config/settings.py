@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # my apps
     "core",
     "posts",
+    "profiles",
     # third party apps
     "allauth",
     "allauth.account",

@@ -1,8 +1,9 @@
 from allauth.account.decorators import verified_email_required, login_required
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Count
 from posts.models import Posts
-
+from profiles.models import Profile
 
 # tested
 def landing_page(request):
@@ -19,10 +20,12 @@ def home(request):
 
     is_hx_request = request.headers.get("HX-Request") == "true"
     all_posts = Posts.objects.all()[:10]
+    user = get_object_or_404(User, username=request.user.username)
+    profile = Profile.objects.get(user=user)
     return render(
         request,
         "core/home.html",
-        {"all_posts": all_posts, "is_hx_request": is_hx_request},
+        {"all_posts": all_posts, "is_hx_request": is_hx_request, "profile": profile},
     )
 
 
