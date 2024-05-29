@@ -65,7 +65,12 @@ Post Detail - {{ post.title }}
                                 style="width: 50px; height: 50px; object-fit: cover;"
                             >
                             <!-- badge ranking system -->
-                            <a href="#" class="me-1" style="color: rgb(75, 75, 75); font-weight: 500;"
+                            <a
+                                hx-get="{% url 'show_user' post.author.username %}"
+                                hx-target="#main-content"
+                                hx-swap="innerHTML"
+                                class="me-1"
+                                style="color: rgb(75, 75, 75); font-weight: 500; cursor: pointer;"
                             >
                                 {{ post.author }}
                             </a>
