@@ -3,12 +3,13 @@
 Home
 {% endblock head_title %}
 
-
 {% block content %}
 
 {% if not is_hx_request %}
     {% include 'includes/navbar.html' %}
 {% endif %}
+
+{% include 'snippets/messages.html' %}
 
 <!-- content -->
 <div id="main-content" class="container-lg-fluid">

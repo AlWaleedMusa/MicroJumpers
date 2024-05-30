@@ -1,6 +1,7 @@
 from .forms import PostCreation, CommentCreation
 from .models import Posts, Comments
 from allauth.account.decorators import verified_email_required, login_required
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Count
@@ -32,6 +33,7 @@ def add_post(request):
                 instance.uploaded_image = image_file
                 instance.save()
             form.save_m2m()
+            messages.success(request, "Posted successfully")
             return redirect("home")
     else:
         form = PostCreation()
@@ -79,6 +81,7 @@ def edit_post(request, pk):
                 instance.uploaded_image = request.FILES["uploaded_image"]
             instance.save()
             form.save_m2m()
+            messages.success(request, "updated successfully")
             return redirect("post_detail", post_id)
     return render(
         request,
@@ -96,6 +99,7 @@ def delete_post(request, pk):
     post = get_object_or_404(Posts, id=pk)
     if request.method == "POST":
         post.delete()
+        messages.success(request, "deleted successfully")
         return redirect("home")
     else:
         return render(request, "snippets/delete_post.html", {"post": post})
