@@ -85,4 +85,4 @@ class Comments(models.Model):
         top_liked_comments = top_liked_comments.exclude(num_likes__lt=min_likes)
         top_liked_comments = top_liked_comments.order_by("-num_likes")[:num_comments]
 
-        return top_liked_comment
+        return top_liked_comments
