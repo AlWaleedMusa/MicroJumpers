@@ -10,7 +10,7 @@ Create Post
     <div
         class="col-lg-8 col-11 border border-light-subtle bg-light p-3 rounded"
     >
-        <h3>Ask a Question</h3>
+        <h3>Create a Post</h3>
         <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% render_field form.title class='form-control' placeholder='Title' %}
