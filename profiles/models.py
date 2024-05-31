@@ -10,8 +10,9 @@ class Profile(models.Model):
     image = models.ImageField(
         upload_to="profile_pics", null=True, blank=True, default="default_profile.jpg"
     )
+    technician = models.BooleanField(default=False)
     location = models.CharField(max_length=100, null=True, blank=True)
-    bio = models.TextField(max_length=200, null=True, blank=True)
+    experience = models.TextField(max_length=200, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
