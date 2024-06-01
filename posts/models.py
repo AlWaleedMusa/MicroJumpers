@@ -29,7 +29,13 @@ class Posts(models.Model):
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
-    # solution = models.TextField(blank=True)
+    solution_comment = models.OneToOneField(
+        "Comments",
+        on_delete=models.SET_NULL,
+        related_name="solution_comment",
+        blank=True,
+        null=True,
+    )
     # solved_by = models.ForeignKey(
     #     User,
     #     on_delete=models.CASCADE,

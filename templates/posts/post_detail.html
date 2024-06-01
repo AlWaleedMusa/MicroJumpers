@@ -162,11 +162,20 @@ Post Detail - {{ post.title }}
                             Post Comment
                         </button>
                     </form>
+                    <div>
+                        {% for comment in comments %}
+                            {% if comment.mark_solution %}
+                                {% include 'snippets/solution_comment.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                     <!-- show comments -->
                     <h4 class="mt-4">Comments</h4>
                     <div class="card p-3 mt-2">
                         {% for comment in comments %}
-                            {% include 'posts/add_comment.html' %}
+                            {% if not comment.mark_solution %}
+                                {% include 'posts/add_comment.html' %}
+                            {% endif %}
                         {% endfor %}
                     </div>
                     <!-- end of show comments -->

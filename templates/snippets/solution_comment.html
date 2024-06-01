@@ -1,3 +1,4 @@
+<h4 class="mt-4" style="color: green;">Solution</h4>
 <div class="d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
         <img
@@ -8,18 +9,18 @@
         <a
             class="me-1"
             style="color: rgb(75, 75, 75); font-weight: 500;"
-            >{{ comment.author }}</a>
+            >{{ post.solution_comment.author }}</a>
     </div>
-    <small>{{ comment.created_at|timesince }}</small>
+    <small>{{ post.solution_comment.created_at|timesince }}</small>
 </div>
 <div class="mt-3 mb-2 p-2" style="border-bottom: 1px solid lightgray;">
-    <p class="card-text">{{ comment.body|safe }}</p>
+    <p class="card-text">{{ post.solution_comment.body|safe }}</p>
     <div class="d-flex justify-content-between">
         <div>
             <span class="pe-1">
-                {{ comment.likes.count }} <!-- likes -->
+                {{ post.solution_comment.likes.count }} <!-- likes -->
             </span>
-            {% if user in comment.likes.all %}
+            {% if user in post.solution_comment.likes.all %}
             <a
                 hx-post="{% url 'like_comment' comment.id %}"
                 hx-target="#main-content"
@@ -69,11 +70,11 @@
         {% endif %}
         {% if request.user != comment.author and request.user == comment.post.author %}
             <a
-                hx-get="{% url 'mark_solution' comment.id %}"
+                hx-get="{% url 'mark_solution' post.solution_comment.id %}"
                 hx-target="#main-content"
                 hx-swap="innerHTML"
                 style="cursor: pointer;">
-                {% if comment.mark_solution %}
+                {% if post.solution_comment.mark_solution %}
                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>

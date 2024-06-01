@@ -47,3 +47,7 @@ class TestUrls(SimpleTestCase):
     def test_bookmark_post_url_resolve(self):
         url = reverse("bookmark_post", args=["1"])
         self.assertEqual(resolve(url).func, bookmark_post)
+
+    def test_mark_solution_url_resolves(self):
+        url = reverse("mark_solution", args=["1"])
+        self.assertEqual(resolve(url).func, mark_solution)

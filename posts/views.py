@@ -211,3 +211,28 @@ def bookmark_post(request, pk):
         else:
             post.bookmarks.add(user)
     return redirect("post_detail", post.id)
+
+
+def mark_solution(request, pk):
+    """mark a comment as a solution"""
+
+    comment = get_object_or_404(Comments, id=pk)
+    post_id = comment.post.id
+    post = get_object_or_404(Posts, id=post_id)
+
+    if request.user == post.author:
+        if comment.mark_solution:
+            comment.mark_solution = False
+            post.solution_comment = None
+            post.save()
+            comment.save()
+        else:
+            comment.mark_solution = True
+            for c in post.comments.all():
+                if c.mark_solution:
+                    c.mark_solution = False
+                    c.save()
+            post.solution_comment = comment
+            post.save()
+            comment.save()
+    return redirect("post_detail", post_id)
