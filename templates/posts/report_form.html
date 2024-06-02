@@ -5,7 +5,7 @@ Report {% if post %} {{ post.title }} {% else %} comment {% endif %}
 {% load widget_tweaks %}
 {% block content %}
 
-<div class="col-lg-8 col mx-auto bg-light p-3 border rounded">
+<div class="col-lg-8 col-11 mx-auto bg-light p-3 border rounded mt-5">
     <h1><span class="text-danger">Report</span> {% if post %} {{ post.title }} {% else %} comment {% endif %}</h1>
     <form
         {% if post %}

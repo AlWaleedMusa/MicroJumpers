@@ -43,6 +43,41 @@ Post Detail - {{ post.title }}
                                     >Delete</a></li>
                                 </ul>
                             </div>
+                            {% else %}
+                            <div class="dropdown">
+                                <svg class="dropdown-toggle" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false" width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="6" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="18" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <ul class="dropdown-menu">
+                                    {% if user in post.bookmarks.all %}
+                                    <li><a
+                                        class="dropdown-item"
+                                        hx-get="{% url 'bookmark_post' post.id %}"
+                                        hx-target="#main-content"
+                                        hx-swap="innerHTML"
+                                        style="cursor: pointer; color: green;"
+                                        ><strong>Bookmarked</strong></a></li>
+                                    {% else %}
+                                        <li><a
+                                        class="dropdown-item"
+                                        hx-get="{% url 'bookmark_post' post.id %}"
+                                        hx-target="#main-content"
+                                        hx-swap="innerHTML"
+                                        style="cursor: pointer;"
+                                        >Bookmark</a></li>
+                                    {% endif %}
+                                    <li><a
+                                    class="dropdown-item"
+                                    hx-get="{% url 'report_post' post.id %}"
+                                    hx-target="#main-content"
+                                    hx-swap="innerHTML"
+                                    style="cursor: pointer; color: red;"
+                                    class="ms-3"
+                                    >Report</a></li>
+                                </ul>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -121,42 +156,6 @@ Post Detail - {{ post.title }}
                             </a>
                             {% endif %}
                         </div>
-                        {% if request.user != post.author %}
-                        <div class="dropdown">
-                            <svg class="dropdown-toggle" style="cursor: pointer;" data-bs-toggle="dropdown" aria-expanded="false" width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="6" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="18" cy="12" r="1" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <ul class="dropdown-menu">
-                                {% if user in post.bookmarks.all %}
-                                <li><a
-                                    class="dropdown-item"
-                                    hx-get="{% url 'bookmark_post' post.id %}"
-                                    hx-target="#main-content"
-                                    hx-swap="innerHTML"
-                                    style="cursor: pointer; color: green;"
-                                    >Bookmarked</a></li>
-                                {% else %}
-                                    <li><a
-                                    class="dropdown-item"
-                                    hx-get="{% url 'bookmark_post' post.id %}"
-                                    hx-target="#main-content"
-                                    hx-swap="innerHTML"
-                                    style="cursor: pointer;"
-                                    >Bookmark</a></li>
-                                {% endif %}
-                                <li><a
-                                class="dropdown-item"
-                                hx-get="{% url 'report_post' post.id %}"
-                                hx-target="#main-content"
-                                hx-swap="innerHTML"
-                                style="cursor: pointer; color: red;"
-                                class="ms-3"
-                                >Report</a></li>
-                            </ul>
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
 
