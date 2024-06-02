@@ -92,3 +92,31 @@ class Comments(models.Model):
         top_liked_comments = top_liked_comments.order_by("-num_likes")[:num_comments]
 
         return top_liked_comments
+
+
+class Reports(models.Model):
+    """Creating a report model"""
+
+    REPORT_CHOICES = [
+        ("SPAM", "Spam"),
+        ("INAPPROPRIATE", "Inappropriate"),
+        ("OTHER", "Other"),
+    ]
+
+    reporter = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, null=True, blank=True)
+    comment = models.ForeignKey(
+        Comments, on_delete=models.CASCADE, null=True, blank=True
+    )
+    reason = models.CharField(max_length=255, choices=REPORT_CHOICES)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Report by {self.reporter} on {"Post" if self.post else "Comment"}'
+
+    class Meta:
+        """overwriting META"""
+
+        ordering = ["-created_at"]
+        verbose_name_plural = "Reports"

@@ -1,5 +1,5 @@
-from .forms import PostCreation, CommentCreation
-from .models import Posts, Comments
+from .forms import PostCreation, CommentCreation, ReportForm
+from .models import Posts, Comments, Reports
 from allauth.account.decorators import verified_email_required, login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
@@ -236,3 +236,39 @@ def mark_solution(request, pk):
             post.save()
             comment.save()
     return redirect("post_detail", post_id)
+
+
+def report_post(request, pk):
+    """report a post"""
+
+    post = get_object_or_404(Posts, id=pk)
+    if request.method == "POST":
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.post = post
+            instance.reporter = request.user
+            instance.save()
+            messages.success(request, "Reported successfully")
+            return redirect("post_detail", pk)
+    else:
+        form = ReportForm()
+    return render(request, "posts/report_form.html", {"form": form, "post": post})
+
+
+def report_comment(request, pk):
+    """report a comment"""
+
+    comment = get_object_or_404(Comments, id=pk)
+    if request.method == "POST":
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.comment = comment
+            instance.reporter = request.user
+            instance.save()
+            messages.success(request, "Reported successfully")
+            return redirect("post_detail", comment.post.id)
+    else:
+        form = ReportForm()
+    return render(request, "posts/report_form.html", {"form": form, "comment": comment})

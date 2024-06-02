@@ -2,6 +2,7 @@ from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 from posts.views import *
 
+
 class TestUrls(SimpleTestCase):
 
     def test_add_post_url_resolves(self):
@@ -27,7 +28,7 @@ class TestUrls(SimpleTestCase):
     def test_add_comment_url_resolves(self):
         url = reverse("add_comment", args=["1"])
         self.assertEqual(resolve(url).func, add_comment)
-    
+
     def test_edit_comment_url_resolves(self):
         url = reverse("edit_comment", args=["1"])
         self.assertEqual(resolve(url).func, edit_comment)
@@ -51,3 +52,11 @@ class TestUrls(SimpleTestCase):
     def test_mark_solution_url_resolves(self):
         url = reverse("mark_solution", args=["1"])
         self.assertEqual(resolve(url).func, mark_solution)
+
+    def test_report_post_url_resolves(self):
+        url = reverse("report_post", args=["1"])
+        self.assertEqual(resolve(url).func, report_post)
+
+    def test_report_comment_url_resolves(self):
+        url = reverse("report_comment", args=["1"])
+        self.assertEqual(resolve(url).func, report_comment)

@@ -1,4 +1,4 @@
-from .models import Posts, Comments
+from .models import Posts, Comments, Reports
 from django.forms import ModelForm
 from django_summernote.widgets import SummernoteWidget
 
@@ -33,10 +33,20 @@ class CommentCreation(ModelForm):
             "body": SummernoteWidget(
                 attrs={
                     "summernote": {"width": "100%", "height": "280px"},
-                    "toolbar": [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline']],
-                    ],
                 }
             )
+        }
+
+
+class ReportForm(ModelForm):
+    """form to report a post or comment"""
+
+    class Meta:
+        model = Reports
+        fields = ["reason", "description"]
+
+        widgets = {
+            "description": SummernoteWidget(
+                attrs={"summernote": {"width": "100%", "height": "280px"}}
+            ),
         }
