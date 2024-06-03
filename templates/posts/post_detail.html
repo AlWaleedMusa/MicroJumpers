@@ -191,14 +191,16 @@ Post Detail - {{ post.title }}
                         {% endfor %}
                     </div>
                     <!-- show comments -->
-                    <h4 class="mt-4">Comments</h4>
-                    <div class="card p-3 mt-2">
-                        {% for comment in comments %}
-                            {% if not comment.mark_solution %}
-                                {% include 'posts/add_comment.html' %}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                    {% if comments %}
+                        <h4 class="mt-4">Comments</h4>
+                        <div class="card p-3 mt-2">
+                            {% for comment in comments %}
+                                {% if not comment.mark_solution %}
+                                    {% include 'posts/add_comment.html' %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <!-- end of show comments -->
                 </div>
                 <!-- end of write a comment -->
