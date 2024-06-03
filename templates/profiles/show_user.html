@@ -14,6 +14,30 @@ Profile - {{ profile.user.username }}
     #main-profile {
         margin-left: 230px;
     }
+
+    .profile-counter {
+        display: flex;
+        align-items: center;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .counter-text h2 {
+        margin: 0;
+        font-size: 2em;
+        color: #343a40;
+    }
+
+    .counter-text p {
+        margin: 5px 0 0;
+        color: #6c757d;
+    }
+
 </style>
 
 <div class="container-fluid">
@@ -44,10 +68,26 @@ Profile - {{ profile.user.username }}
                 style="width: 100px; height: 100px; object-fit: cover;"
             >
             <h3 class="pt-3">{{ profile.user.username }}</h3>
-            <span class="badge text-bg-success">Rookie</span>
-            <p class="text-muted p-2 border-bottom">Joined: {{ profile.user.date_joined|date:"F d, Y" }}</p>
             <div>
-                <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                {% if confirmed_solutions < 6 %}
+                    <span class="badge text-bg-success ms-lg-1">Rookie</span>
+                {% elif confirmed_solutions > 5 and confirmed_solutions < 21 %}
+                    <span class="badge ms-lg-1" style="background-color: var(--primary-color)">Problem Solver</span>
+                {% elif confirmed_solutions > 20 and confirmed_solutions < 51 %}
+                    <span class="badge text-bg-dark ms-lg-1">Solution Guru</span>
+                {% elif confirmed_solutions > 50 %}
+                    <span class="badge ms-lg-1" style="background-color: #ffbc11;">Master Troubleshooter</span>
+                {% endif %}
+            </div>
+            <div class="profile-counter">
+                <div class="counter-text">
+                    <h2 id="confirmed-answers-count">{{ confirmed_solutions }}</h2>
+                    <p>Confirmed Answers</p>
+                </div>
+            </div>
+            <!-- <p class="text-muted p-2 border-bottom">Joined: {{ profile.user.date_joined|date:"F d, Y" }}</p> -->
+            <div>
+                <div class="p-2 mb-1 border-top text-muted d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
                     </svg>
