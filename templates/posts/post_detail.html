@@ -94,13 +94,13 @@ Post Detail - {{ post.title }}
                                 {{ post.author }}
                             </a>
                                 <div class="d-block d-lg-inline-block">
-                                    {% if total_posts_solved < 6 %}
+                                    {% if confirmed_solutions < 6 %}
                                         <span class="badge text-bg-success ms-lg-1">Rookie</span>
-                                    {% elif total_posts_solved > 5 and total_posts_solved < 21 %}
+                                    {% elif confirmed_solutions > 5 and confirmed_solutions < 21 %}
                                         <span class="badge ms-lg-1" style="background-color: var(--primary-color)">Problem Solver</span>
-                                    {% elif total_posts_solved > 20 and total_posts_solved < 51 %}
+                                    {% elif confirmed_solutions > 20 and confirmed_solutions < 51 %}
                                         <span class="badge text-bg-dark ms-lg-1">Solution Guru</span>
-                                    {% elif total_posts_solved > 50 %}
+                                    {% elif confirmed_solutions > 50 %}
                                         <span class="badge ms-lg-1" style="background-color: #ffbc11;">Master Troubleshooter</span>
                                     {% endif %}
                                 </div>

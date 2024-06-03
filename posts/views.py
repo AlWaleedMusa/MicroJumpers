@@ -52,6 +52,7 @@ def post_detail(request, pk):
     comment_form = CommentCreation()
     comments = Comments.objects.filter(post=post)
     related_posts = Posts.objects.filter(tags__in=tags).exclude(id=pk).distinct()[:5]
+    confirmed_solutions = Comments.objects.filter(author=request.user, mark_solution=True).count()
 
     context = {
         "post": post,
@@ -59,6 +60,7 @@ def post_detail(request, pk):
         "comment_form": comment_form,
         "comments": comments,
         "related_posts": related_posts,
+        "confirmed_solutions": confirmed_solutions
     }
     return render(request, "posts/post_detail.html", context)
 

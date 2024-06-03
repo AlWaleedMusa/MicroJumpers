@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.db.models import Q
 from django.dispatch import receiver
 from django.shortcuts import render, get_object_or_404
-from posts.models import Posts
+from posts.models import Posts, Comments
 
 
 @receiver(post_save, sender=User)
@@ -24,11 +24,13 @@ def show_user(request, username):
 
     user = get_object_or_404(User, username=username)
     profile = Profile.objects.get(user=user)
+    confirmed_solutions = Comments.objects.filter(author=request.user, mark_solution=True).count()
 
     if request.user.username == username:
 
         context = {
             "profile": profile,
+            "confirmed_solutions": confirmed_solutions,
         }
         return render(request, "profiles/show_user.html", context)
     else:
