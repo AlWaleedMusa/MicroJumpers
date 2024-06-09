@@ -1,10 +1,11 @@
 from .models import Profile
+from .forms import EditProfile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db.models import Q
 from django.dispatch import receiver
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from posts.models import Posts, Comments
 
 
@@ -24,13 +25,17 @@ def show_user(request, username):
 
     user = get_object_or_404(User, username=username)
     profile = Profile.objects.get(user=user)
-    confirmed_solutions = Comments.objects.filter(author=request.user, mark_solution=True).count()
+    confirmed_solutions = Comments.objects.filter(
+        author=request.user, mark_solution=True
+    ).count()
+    is_hx_request = request.headers.get("HX-Request") == "true"
 
     if request.user.username == username:
 
         context = {
             "profile": profile,
             "confirmed_solutions": confirmed_solutions,
+            "is_hx_request": is_hx_request,
         }
         return render(request, "profiles/show_user.html", context)
     else:
@@ -38,8 +43,6 @@ def show_user(request, username):
             "profile": profile,
         }
         return render(request, "profiles/show_profile.html", context)
-
-
 
 
 def bookmarks(request, username):
@@ -83,3 +86,38 @@ def search_profile(request, username):
     return render(
         request, "snippets/profile_search.html", {"post_search_result": posts}
     )
+
+
+def profile_settings(request, username):
+    """Profile settings"""
+
+    context = {
+        "profile": Profile.objects.get(user=request.user),
+    }
+
+    return render(request, "snippets/profile_settings.html", context)
+
+
+def edit_profile(request, username):
+    """Edit profile settings"""
+
+    profile = get_object_or_404(User, username=username)
+    user = request.user
+    if request.method == "POST":
+        form = EditProfile(
+            request.POST, request.FILES, instance=profile.user_profile, user=user
+        )
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            # updating userModel data
+            user_instance = user
+            user_instance.username = form.cleaned_data["username"]
+            user_instance.first_name = form.cleaned_data["first_name"]
+            user_instance.last_name = form.cleaned_data["last_name"]
+            user_instance.save()
+            return redirect("show_user", username=user.username)
+
+    form = EditProfile(instance=profile.user_profile, user=user)
+    return render(request, "profiles/edit_profile_settings.html", {"form": form})

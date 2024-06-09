@@ -5,6 +5,10 @@ Profile - {{ profile.user.username }}
 
 {% block content %}
 
+{% if not is_hx_request %}
+    {% include 'includes/navbar.html' %}
+{% endif %}
+
 <style>
     .sidebar {
         position: fixed;
@@ -91,7 +95,11 @@ Profile - {{ profile.user.username }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
                     </svg>
-                    <a class="ps-3 text-start text-muted" style="cursor: pointer;">Settings</a>
+                    <a
+                        hx-get="{% url 'profile_settings' request.user.username %}"
+                        hx-target="#main-profile"
+                        hx-swap="innerHTML"
+                        class="ps-3 text-start text-muted" style="cursor: pointer;">Settings</a>
                 </div>
                 <div class="p-2 mb-1 text-muted d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
@@ -118,45 +126,8 @@ Profile - {{ profile.user.username }}
             </div>
         </div>
         <div id="main-profile" class="col">
-            
+
         </div>
-        <!-- <div id="profile-content" class="col-lg-6">
-            <input
-                class="form-control bg-white"
-                disabled
-                type="email"
-                value="{{ profile.email }}"
-                placeholder="Email"
-            />
-            <input
-                class="form-control mt-2 bg-white"
-                disabled
-                type="text"
-                value="{{ profile.first_name }}"
-                placeholder="First name"
-            />
-            <input
-                class="form-control mt-2 bg-white"
-                disabled
-                type="text"
-                value="{{ profile.last_name }}"
-                placeholder="Last name"
-            />
-            <input
-                class="form-control mt-2 bg-white"
-                disabled
-                type="text"
-                value="{{ profile.location }}"
-                placeholder="Location"
-            />
-            <textarea
-                class="form-control mt-2 bg-white"
-                rows="4"
-                disabled
-                type="text"
-                placeholder="Bio"
-            >{{ profile.bio }}</textarea>
-        </div> -->
     </div>
 </div>
 
