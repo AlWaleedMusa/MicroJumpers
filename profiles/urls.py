@@ -8,4 +8,5 @@ urlpatterns = [
     path("<str:username>/search/", views.search_profile, name="search-profile"),
     path("<str:username>/settings/", views.profile_settings, name="profile_settings"),
     path("<str:username>/edit/", views.edit_profile, name="edit_profile"),
+    path("<str:username>/contact_me/", views.contact_me, name="contact_me"),
 ]

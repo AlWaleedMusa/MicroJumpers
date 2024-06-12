@@ -26,7 +26,7 @@ def show_user(request, username):
     user = get_object_or_404(User, username=username)
     profile = Profile.objects.get(user=user)
     confirmed_solutions = Comments.objects.filter(
-        author=request.user, mark_solution=True
+        author=user, mark_solution=True
     ).count()
     is_hx_request = request.headers.get("HX-Request") == "true"
 
@@ -41,8 +41,10 @@ def show_user(request, username):
     else:
         context = {
             "profile": profile,
+            "confirmed_solutions": confirmed_solutions,
+            "posts": Posts.objects.filter(author=user),
         }
-        return render(request, "profiles/show_profile.html", context)
+        return render(request, "profiles/show_others_profiles.html", context)
 
 
 def bookmarks(request, username):
@@ -121,3 +123,16 @@ def edit_profile(request, username):
 
     form = EditProfile(instance=profile.user_profile, user=user)
     return render(request, "profiles/edit_profile_settings.html", {"form": form})
+
+
+def contact_me(request, username):
+    """Contact me page"""
+
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+
+    context = {
+        "profile": profile,
+    }
+
+    return render(request, "snippets/contact_me.html", context)

@@ -1,0 +1,212 @@
+{% extends "layouts/base.html" %}
+{% block head_title %}
+Profile - {{ profile.user.username }}
+{% endblock head_title %}
+
+{% block content %}
+
+{% include 'snippets/messages.html' %}
+
+<style>
+    @media screen and (min-width: 992px){
+    }
+
+    .profile-counter {
+        display: flex;
+        align-items: center;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .active {
+        text-decoration: underline;
+        text-decoration-color: var(--primary-color);
+        text-underline-offset: 8px;
+        text-decoration-thickness: 3px;
+    }
+
+    .counter-text h2 {
+        margin: 0;
+        font-size: 2em;
+        color: #343a40;
+    }
+
+    .counter-text p {
+        margin: 5px 0 0;
+        color: #6c757d;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <div class="row align-items-start mt-1 d-block">
+        <div
+            class="col-lg-3 mt-lg-2 p-3 d-flex flex-column align-items-center d-block mx-auto">
+            <img
+                class="rounded-circle mx-auto d-block"
+                src="{{ profile.image.url }}" alt=""
+                style="width: 100px; height: 100px; object-fit: cover;"
+            >
+            <h3 class="pt-3">{{ profile.user.username }}</h3>
+            <div>
+                {% if confirmed_solutions < 6 %}
+                    <span class="badge text-bg-success ms-lg-1">Rookie</span>
+                {% elif confirmed_solutions > 5 and confirmed_solutions < 21 %}
+                    <span class="badge ms-lg-1" style="background-color: var(--primary-color)">Problem Solver</span>
+                {% elif confirmed_solutions > 20 and confirmed_solutions < 51 %}
+                    <span class="badge text-bg-dark ms-lg-1">Solution Guru</span>
+                {% elif confirmed_solutions > 50 %}
+                    <span class="badge ms-lg-1" style="background-color: #ffbc11;">Master Troubleshooter</span>
+                {% endif %}
+            </div>
+            <p class="text-muted p-2">Joined - {{ profile.user.date_joined|date:"F d, Y" }}</p>
+            <div class="profile-counter">
+                <div class="counter-text">
+                    <h2 id="confirmed-answers-count">{{ confirmed_solutions }}</h2>
+                    <p>Confirmed Answers</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                <a
+                    hx-get="{% url 'user_posts' profile.user.username %}"
+                    hx-target="#main-profile"
+                    hx-swap="innerHTML"
+                    class="ps-3 text-start text-muted set_underline active" style="cursor: pointer;"
+                    >Posts</a>
+            </div>
+            <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                <a
+                    hx-get="{% url 'contact_me' profile.user %}"
+                    hx-target="#main-profile"
+                    hx-swap="innerHTML"
+                    class="ps-3 text-start text-muted set_underline" style="cursor: pointer;"
+                    >Contact</a>
+            </div>
+        </div>
+        <div id="main-profile">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto mt-1 pt-lg-2 d-flex justify-content-start align-items-start">
+            {% for post in posts %}
+                <div class="col">
+                    <div class="col p-2">
+                        <div class="card">
+                            <a
+                                hx-get="{% url 'post_detail' post.id %}"
+                                hx-target="#main-content"
+                                hx-swap="innerHTML"
+                                style="cursor: pointer;"
+                            >
+                                <img
+                                src="{{ post.uploaded_image.url}}"
+                                class="card-img-top post-image-home"
+                                alt="{{ post.title }}"
+                                style="height: 250px;"/>
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <!-- show tags -->
+                                <div>
+                                    <ul class="p-0 mt-1">
+                                        {% for tag in post.tags.all %}
+                                        <a
+                                            hx-get="{% url 'tag_view' tag.slug %}"
+                                            hx-target="#main-content"
+                                            hx-swap="innerHTML"
+                                            onmouseover="this.style.opacity = '0.8' "
+                                            onmouseleave="this.style.opacity = '1' "
+                                        >
+                                            <span
+                                                class="badge text-bg-secondary"
+                                                style="cursor: pointer"
+                                                >{{ tag }}</span
+                                            ></a
+                                        >
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <!-- end of show tags -->
+                                <div
+                                    class="d-flex justify-content-between align-items-center pb-3"
+                                >
+                                    <div class="d-flex align-items-center">
+                                        <img
+                                            class="rounded-circle me-2"
+                                            src="{{ post.author.user_profile.image.url }}"
+                                            alt=""
+                                            style="
+                                                width: 40px;
+                                                height: 40px;
+                                                object-fit: cover;
+                                            "
+                                        />
+                                        {{ post.author }}
+                                    </div>
+                                    <small>
+                                        {{ post.created_at|date:"F d, Y" }}
+                                    </small>
+                                </div>
+                                <div
+                                    class="d-flex justify-content-between align-items-end"
+                                >
+                                    <p>
+                                        {{ post.likes.count }} <!-- likes -->
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-heart ms-1"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+                                            />
+                                        </svg>
+                                    </p>
+                                    <p>
+                                        {{ post.comments.count }} <!-- comments -->
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-chat-square-text ms-1"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+                                            />
+                                            <path
+                                                d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"
+                                            />
+                                        </svg>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const link = document.querySelectorAll('.set_underline');
+    link.forEach((item) => {
+        item.addEventListener('click', () => {
+            link.forEach((item) => {
+                item.classList.remove('active');
+            });
+            item.classList.add('active');
+        });
+    });
+</script>
+{% endblock %}
