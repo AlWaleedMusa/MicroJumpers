@@ -117,7 +117,7 @@ def edit_profile(request, username):
             user_instance.first_name = form.cleaned_data["first_name"]
             user_instance.last_name = form.cleaned_data["last_name"]
             user_instance.save()
-            return redirect("show_user", username=user.username)
+            return redirect("profile_settings", username=username)
 
     form = EditProfile(instance=profile.user_profile, user=user)
     return render(request, "profiles/edit_profile_settings.html", {"form": form})

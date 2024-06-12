@@ -1,13 +1,19 @@
 {% load widget_tweaks %}
 
 <div class="row pt-3 align-items-start">
-    <div class="col-lg-6 p-5">
+    <div class="col-lg-6 p-lg-5 p-4">
         <div class="w-100">
             <div class="mb-2 d-flex justify-content-between align-items-center">
                 <h2>Edit information</h2>
             </div>
             <div class="w-100">
-                <form action="{% url 'edit_profile' user.username %}" method="post" enctype="multipart/form-data">
+                <form
+                    hx-post="{% url 'edit_profile' user.username %}"
+                    hx-target="#main-profile"
+                    hx-swap="innerHTML"
+                    method="post"
+                    action="{% url 'edit_profile' user.username %}"
+                >
                     {% csrf_token %}
                     <!-- {% render_field form.image class="form-control" %} -->
                     <div class="d-flex gap-2">

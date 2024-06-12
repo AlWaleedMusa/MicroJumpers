@@ -1,5 +1,5 @@
 <div class="row pt-3 align-items-start">
-    <div class="col-lg-6 p-5">
+    <div class="col-lg-6 p-lg-5 p-4">
         <div class="mb-2 d-flex justify-content-between align-items-center">
             <h2>User information</h2>
             <a
@@ -21,9 +21,10 @@
                     id="first_name"
                     type="text"
                     disabled
-                    class="form-control bg-white"
+                    class="form-control"
                     value="{{ profile.user.first_name }}"
                     placeholder="First name"
+                    style="background-color: lightgray;"
                 >
             </div>
             <div class="w-50">
@@ -31,9 +32,10 @@
                 <input
                     type="text"
                     disabled
-                    class="form-control bg-white"
+                    class="form-control"
                     value="{{ profile.user.last_name }}"
                     placeholder="Last name"
+                    style="background-color: lightgray;"
                 >
             </div>
         </div>
@@ -41,51 +43,57 @@
         <input
             type="text"
             disabled
-            class="form-control bg-white"
+            class="form-control"
             value="{{ profile.user.username }}"
             placeholder="Username"
+            style="background-color: lightgray;"
         >
         <label class="mt-2 p-1" style="display: flex;">Location</label>
         <input
-            class="form-control bg-white"
+            class="form-control"
             disabled
             type="text"
             value="{{ profile.location }}"
             placeholder="Location"
+            style="background-color: lightgray;"
         />
         <label class="mt-2 p-1" style="display: flex;">Title</label>
         <input
             type="text"
             disabled
-            class="form-control bg-white"
+            class="form-control"
             value="{{ profile.user_type }}"
+            style="background-color: lightgray;"
         >
         <label class="mt-2 p-1" style="display: flex;">Specialization</label>
         <input
             type="text"
             disabled
-            class="form-control bg-white"
+            class="form-control"
             value="{{ profile.specialization }}"
+            style="background-color: lightgray;"
         >
         <label class="mt-2 p-1" style="display: flex;">Work Experience</label>
         <input
             type="text"
             disabled
-            class="form-control bg-white"
+            class="form-control"
             value="{{ profile.work_experience }}{% if profile.work_experience == 10 %}+ Years {% else %} Years {% endif %}"
+            style="background-color: lightgray;"
         >
     </div>
-    <div class="col-lg-6 p-5">
+    <div class="col-lg-6 p-lg-5 p-4">
         <div class="mb-4">
             <h2>Email and Password</h2>
         </div>
         <label class="mt-3 p-1" style="display: flex;">Email</label>
         <input
-            class="form-control bg-white"
+            class="form-control"
             disabled
             type="email"
             value="{{ profile.email }}"
             placeholder="Email"
+            style="background-color: lightgray;"
         />
         <div class="mt-3">
             <a

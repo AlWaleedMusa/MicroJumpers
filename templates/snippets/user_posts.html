@@ -54,15 +54,7 @@
                                         object-fit: cover;
                                     "
                                 />
-                                <a
-                                    href="#"
-                                    style="
-                                        color: rgb(75, 75, 75);
-                                        font-weight: 400;
-                                    "
-                                >
-                                    {{ post.author }}
-                                </a>
+                                {{ post.author }}
                             </div>
                             <small>
                                 {{ post.created_at|date:"F d, Y" }}

@@ -12,13 +12,24 @@ Profile - {{ profile.user.username }}
 {% include 'snippets/messages.html' %}
 
 <style>
-    .sidebar {
-        position: fixed;
-        width: 240px;
+    @media screen and (min-width: 992px){        
+        .sidebar {
+            position: fixed;
+            width: 240px;
+            border-right: 1px solid lightgray;
+            height: 85vh;
+        }
+    
+        #main-profile {
+            margin-left: 230px;
+        }
     }
 
-    #main-profile {
-        margin-left: 230px;
+    .active {
+        text-decoration: underline;
+        text-decoration-color: var(--primary-color);
+        text-underline-offset: 8px;
+        text-decoration-thickness: 3px;
     }
 
     .profile-counter {
@@ -47,21 +58,20 @@ Profile - {{ profile.user.username }}
 </style>
 
 <div class="container-fluid">
-    <div class="row align-items-start mt-1 d-none d-lg-flex">
+    <div class="row align-items-start mt-1 d-lg-flex">
         <div
-            class="col-lg-2 mt-2 p-3 d-flex flex-column align-items-center sidebar"
-            style="height: 85vh; border-right: 1px solid lightgray;">
+            class="col-lg-2 mt-lg-2 p-3 d-flex flex-column align-items-center sidebar">
             <!-- search bar -->
-            <div class="p-2 mb-3">
+            <div class="p-2 mb-3 w-100">
                 <div class="d-flex">
                     <input
-                        hx-get="{% url 'search-profile' request.user.username %}"
+                        hx-get="{% url 'search-profile' user.username %}"
                         hx-target="#main-profile"
                         hx-swap="innerHTML"
                         hx-trigger="keyup changed delay:500ms"
-                        class="form-control me-2 "
+                        class="form-control"
                         type="search"
-                        placeholder="Search"
+                        placeholder="Search My Posts"
                         aria-label="Search"
                         name="search"
                     />
@@ -92,38 +102,41 @@ Profile - {{ profile.user.username }}
                 </div>
             </div>
             <!-- <p class="text-muted p-2 border-bottom">Joined: {{ profile.user.date_joined|date:"F d, Y" }}</p> -->
-            <div>
-                <div class="p-2 mb-1 border-top text-muted d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
-                    </svg>
-                    <a
-                        hx-get="{% url 'profile_settings' request.user.username %}"
-                        hx-target="#main-profile"
-                        hx-swap="innerHTML"
-                        class="ps-3 text-start text-muted" style="cursor: pointer;">Settings</a>
-                </div>
+            <div class="d-flex d-lg-block">
                 <div class="p-2 mb-1 text-muted d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text d-none d-lg-block" viewBox="0 0 16 16">
                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
                         <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
                     </svg>
                     <a
-                        hx-get="{% url 'user_posts' request.user.username %}"
+                        hx-get="{% url 'user_posts' user.username %}"
                         hx-target="#main-profile"
                         hx-swap="innerHTML"
-                        class="ps-3 text-start text-muted" style="cursor: pointer;">My Posts</a>
+                        class="ps-3 text-start text-muted set_underline" style="cursor: pointer;"
+                        >My Posts</a>
                 </div>
                 <div class="p-2 mb-1 text-muted d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmarks d-none d-lg-block" viewBox="0 0 16 16">
                         <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1z"/>
                         <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1"/>
                     </svg>
                     <a
-                        hx-get="{% url 'bookmarks' request.user.username %}"
+                        hx-get="{% url 'bookmarks' user.username %}"
                         hx-target="#main-profile"
                         hx-swap="innerHTML"
-                        class="ps-3 text-start text-muted" style="cursor: pointer;">Bookmarks</a>
+                        class="ps-3 text-start text-muted set_underline" style="cursor: pointer;"
+                        >Bookmarks</a>
+                </div>
+                <div class="p-2 mb-1 text-muted d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sliders d-none d-lg-block" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                    </svg>
+                    <a
+                        hx-get="{% url 'profile_settings' user.username %}"
+                        hx-target="#main-profile"
+                        hx-swap="innerHTML"
+                        class="ps-3 text-start text-muted set_underline" style="cursor: pointer;"
+                        >Settings</a>
                 </div>
             </div>
         </div>
@@ -133,4 +146,16 @@ Profile - {{ profile.user.username }}
     </div>
 </div>
 
+
+<script>
+    const link = document.querySelectorAll('.set_underline');
+    link.forEach((item) => {
+        item.addEventListener('click', () => {
+            link.forEach((item) => {
+                item.classList.remove('active');
+            });
+            item.classList.add('active');
+        });
+    });
+</script>
 {% endblock %}
