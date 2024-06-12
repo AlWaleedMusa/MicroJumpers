@@ -6,16 +6,16 @@ class Profile(models.Model):
     """User profile model"""
 
     WORK_EXPERIENCE = [
-        (1, "1 year"),
-        (2, "2 years"),
-        (3, "3 years"),
-        (4, "4 years"),
-        (5, "5 years"),
-        (6, "6 years"),
-        (7, "7 years"),
-        (8, "8 years"),
-        (9, "9 years"),
-        (10, "10+ years"),
+        (1, "1 Year"),
+        (2, "2 Years"),
+        (3, "3 Years"),
+        (4, "4 Years"),
+        (5, "5 Years"),
+        (6, "6 Years"),
+        (7, "7 Years"),
+        (8, "8 Years"),
+        (9, "9 Years"),
+        (10, "10+ Years"),
     ]
 
     USER_TYPE = [
