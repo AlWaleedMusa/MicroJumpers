@@ -1,7 +1,8 @@
-<div class="col-lg-5 p-4">
-    <div class="mb-3 d-flex justify-content-between align-items-center">
-        <h2>User information</h2>
-        <a
+<div class="row pt-3 align-items-start">
+    <div class="col-lg-6 p-5">
+        <div class="mb-2 d-flex justify-content-between align-items-center">
+            <h2>User information</h2>
+            <a
             hx-get="{% url 'edit_profile' user.username %}"
             hx-target="#main-profile"
             hx-swap="innerHTML"
@@ -12,73 +13,90 @@
                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
             </svg>
         </a>
-    </div>
-    <div class="d-flex gap-2">
-        <div class="w-50">
-            <label class="mt-2 p-1" style="display: flex;">First name</label>
-            <input
-                id="first_name"
-                type="text"
-                disabled
-                class="form-control bg-white"
-                value="{{ profile.user.first_name }}"
-                placeholder="First name"
-            >
         </div>
-        <div class="w-50">
-            <label class="mt-2 p-1" style="display: flex;">Last name</label>
-            <input
-                type="text"
-                disabled
-                class="form-control bg-white"
-                value="{{ profile.user.last_name }}"
-                placeholder="Last name"
+        <div class="d-flex gap-2">
+            <div class="w-50">
+                <label class="mt-2 p-1" style="display: flex;">First name</label>
+                <input
+                    id="first_name"
+                    type="text"
+                    disabled
+                    class="form-control bg-white"
+                    value="{{ profile.user.first_name }}"
+                    placeholder="First name"
+                >
+            </div>
+            <div class="w-50">
+                <label class="mt-2 p-1" style="display: flex;">Last name</label>
+                <input
+                    type="text"
+                    disabled
+                    class="form-control bg-white"
+                    value="{{ profile.user.last_name }}"
+                    placeholder="Last name"
+                >
+            </div>
+        </div>
+        <label class="mt-2 p-1" style="display: flex;">Username</label>
+        <input
+            type="text"
+            disabled
+            class="form-control bg-white"
+            value="{{ profile.user.username }}"
+            placeholder="Username"
+        >
+        <label class="mt-2 p-1" style="display: flex;">Location</label>
+        <input
+            class="form-control bg-white"
+            disabled
+            type="text"
+            value="{{ profile.location }}"
+            placeholder="Location"
+        />
+        <label class="mt-2 p-1" style="display: flex;">Title</label>
+        <input
+            type="text"
+            disabled
+            class="form-control bg-white"
+            value="{{ profile.user_type }}"
+        >
+        <label class="mt-2 p-1" style="display: flex;">Specialization</label>
+        <input
+            type="text"
+            disabled
+            class="form-control bg-white"
+            value="{{ profile.specialization }}"
+        >
+        <label class="mt-2 p-1" style="display: flex;">Work Experience</label>
+        <input
+            type="text"
+            disabled
+            class="form-control bg-white"
+            value="{{ profile.work_experience }}{% if profile.work_experience == 10 %}+ Years {% else %} Years {% endif %}"
+        >
+    </div>
+    <div class="col-lg-6 p-5">
+        <div class="mb-4">
+            <h2>Email and Password</h2>
+        </div>
+        <label class="mt-3 p-1" style="display: flex;">Email</label>
+        <input
+            class="form-control bg-white"
+            disabled
+            type="email"
+            value="{{ profile.email }}"
+            placeholder="Email"
+        />
+        <div class="mt-3">
+            <a
+                hx-get="{% url 'account_change_password' %}"
+                hx-target="#main-profile"
+                hx-swap="innerHTML"
+                class="btn"
+                style="color: white; font-weight: 500; background-color: var(--primary-color);"
             >
+            Change Password
+            </a>
         </div>
     </div>
-    <label class="mt-2 p-1" style="display: flex;">Username</label>
-    <input
-        type="text"
-        disabled
-        class="form-control bg-white"
-        value="{{ profile.user.username }}"
-        placeholder="Username"
-    >
-    <!-- <label class="mt-2 p-1" style="display: flex;">Email</label>
-    <input
-        class="form-control bg-white"
-        disabled
-        type="email"
-        value="{{ profile.email }}"
-        placeholder="Email"
-    /> -->
-    <label class="mt-2 p-1" style="display: flex;">Location</label>
-    <input
-        class="form-control bg-white"
-        disabled
-        type="text"
-        value="{{ profile.location }}"
-        placeholder="Location"
-    />
-    <label class="mt-2 p-1" style="display: flex;">Title</label>
-    <input
-        type="text"
-        disabled
-        class="form-control bg-white"
-        value="{{ profile.user_type }}"
-    >
-    <label class="mt-2 p-1" style="display: flex;">Specialization</label>
-    <input
-        type="text"
-        disabled
-        class="form-control bg-white"
-        value="{{ profile.specialization }}"
-    >
-    <label class="mt-2 p-1" style="display: flex;">Work Experience</label>
-    <input
-        type="text"
-        disabled
-        class="form-control bg-white"
-        value="{{ profile.work_experience }}{% if profile.work_experience == 10 %}+ Years {% else %} Years {% endif %}"
-    >
 </div>

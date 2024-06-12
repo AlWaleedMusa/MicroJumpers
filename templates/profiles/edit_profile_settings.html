@@ -1,38 +1,38 @@
 {% load widget_tweaks %}
 
-<div class="col-lg-5 p-4">
-    <div class="w-100">
-        <div class="mb-3">
-            <h2>Edit Information</h2>
-        </div>
+<div class="row pt-3 align-items-start">
+    <div class="col-lg-6 p-5">
         <div class="w-100">
-            <form action="{% url 'edit_profile' user.username %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <!-- {% render_field form.image class="form-control" %} -->
-                <div class="d-flex gap-2">
-                    <div class="w-50">
-                        <label class="mt-2 p-1" style="display: flex;">First name</label>
-                        {% render_field form.first_name class="form-control" placeholder="First name" style="padding-left: 12px; border-radius: 6px; height: 40px; width: 100%" %}
+            <div class="mb-2 d-flex justify-content-between align-items-center">
+                <h2>Edit information</h2>
+            </div>
+            <div class="w-100">
+                <form action="{% url 'edit_profile' user.username %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- {% render_field form.image class="form-control" %} -->
+                    <div class="d-flex gap-2">
+                        <div class="w-50">
+                            <label class="mt-2 p-1" style="display: flex;">First name</label>
+                            {% render_field form.first_name class="form-control" placeholder="First name" style="padding-left: 12px; border-radius: 6px; height: 38px; width: 100%" %}
+                        </div>
+                        <div class="w-50">
+                            <label class="mt-2 p-1" style="display: flex;">Last name</label>
+                            {% render_field form.last_name class="form-control" placeholder="Last name" style="padding-left: 12px; border-radius: 6px; height: 38px; width: 100%" %}
+                        </div>
                     </div>
-                    <div class="w-50">
-                        <label class="mt-2 p-1" style="display: flex;">Last name</label>
-                        {% render_field form.last_name class="form-control" placeholder="Last name" style="padding-left: 12px; border-radius: 6px; height: 40px; width: 100%" %}
-                    </div>
-                </div>
-                <label class="mt-2 p-1" style="display: flex;">Username</label>
-                {% render_field form.username class="form-control mb-2" placeholder="Username" style="padding-left: 12px; border-radius: 6px; height: 40px; width: 100%" %}
-                <!-- <label class="mt-2 p-1" style="display: flex;">Email</label>
-                {% render_field form.email class="form-control mb-2" placeholder="Email" style="padding-left: 12px; border-radius: 6px; height: 40px; width: 100%"%} -->
-                <label class="mt-2 p-1" style="display: flex;">Location</label>
-                {% render_field form.location class="form-control mb-2" placeholder="Location" %}
-                <label class="mt-2 p-1" style="display: flex;">Title</label>
-                {% render_field form.user_type class="form-control mb-2" %}
-                <label class="mt-2 p-1" style="display: flex;">Specialization</label>
-                {% render_field form.specialization class="form-control mb-2" %}
-                <label class="mt-2 p-1" style="display: flex;">Work Experience</label>
-                {% render_field form.work_experience class="form-control mb-2" %}
-                <button class="btn mt-3" style="background-color: var(--primary-color); color: white;" type="submit">Save</button>
-            </form>
+                    <label class="mt-2 p-1" style="display: flex;">Username</label>
+                    {% render_field form.username class="form-control mb-2" placeholder="Username" style="padding-left: 12px; border-radius: 6px; height: 38px; width: 100%" %}
+                    <label class="mt-2 p-1" style="display: flex;">Location</label>
+                    {% render_field form.location class="form-control mb-2" placeholder="Location" %}
+                    <label class="mt-2 p-1" style="display: flex;">Title</label>
+                    {% render_field form.user_type class="form-control mb-2" %}
+                    <label class="mt-2 p-1" style="display: flex;">Specialization</label>
+                    {% render_field form.specialization class="form-control mb-2" %}
+                    <label class="mt-2 p-1" style="display: flex;">Work Experience</label>
+                    {% render_field form.work_experience class="form-control mb-2" %}
+                    <button class="btn mt-3" style="background-color: var(--primary-color); color: white;" type="submit">Save</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
