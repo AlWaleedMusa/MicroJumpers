@@ -24,9 +24,9 @@ def add_post(request):
             instance.author = request.user
             if form.cleaned_data.get("uploaded_image"):
                 image = Image.open(instance.uploaded_image)
-                image = image.resize((500, 500), Image.LANCZOS)
+                image = image.resize((400, 300), Image.LANCZOS)
                 image_io = BytesIO()
-                image.save(image_io, format="PNG", quality=100)
+                image.save(image_io, format="JPEG", quality=90)
                 image_file = ContentFile(
                     image_io.getvalue(), name=instance.uploaded_image.name
                 )
