@@ -5,16 +5,31 @@
             src="{{ comment.author.user_profile.image.url }}" alt=""
             style="width: 50px; height: 50px; object-fit: cover;"
         >
-        <a
-            hx-get="{% url 'show_user' comment.author %}"
-            hx-target="#main-content"
-            hx-swap="innerHTML"
-            class="me-1"
-            style="color: rgb(75, 75, 75); font-weight: 500; cursor: pointer;"
-            >{{ comment.author }}</a>
-            {% if comment.author == comment.post.author %}
+        <div>
+            <a
+                hx-get="{% url 'show_user' comment.author %}"
+                hx-target="#main-content"
+                hx-swap="innerHTML"
+                class="me-1"
+                style="color: rgb(75, 75, 75); font-weight: 500; cursor: pointer;"
+                >{{ comment.author }}
+            </a>
+            {% if comment.author != post.author %}
+                <div class="d-flex d-lg-inline-block">
+                    {% if confirmed_solutions < 6 %}
+                        <span class="badge text-bg-success ms-lg-1">Rookie</span>
+                    {% elif confirmed_solutions > 5 and confirmed_solutions < 21 %}
+                        <span class="badge ms-lg-1" style="background-color: var(--primary-color)">Problem Solver</span>
+                    {% elif confirmed_solutions > 20 and confirmed_solutions < 51 %}
+                        <span class="badge text-bg-dark ms-lg-1">Solution Guru</span>
+                    {% elif confirmed_solutions > 50 %}
+                        <span class="badge ms-lg-1" style="background-color: #ffbc11;">Master Troubleshooter</span>
+                    {% endif %}
+                </div>
+            {% else %}
                 <small class="badge text-bg-dark">Author</small>
             {% endif %}
+        </div>
     </div>
     <small>{{ comment.created_at|timesince }}</small>
 </div>
