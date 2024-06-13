@@ -112,7 +112,7 @@ Profile - {{ profile.user.username }}
                         hx-get="{% url 'user_posts' user.username %}"
                         hx-target="#main-profile"
                         hx-swap="innerHTML"
-                        class="ps-3 text-start text-muted set_underline" style="cursor: pointer;"
+                        class="ps-3 text-start text-muted set_underline active" style="cursor: pointer;"
                         >My Posts</a>
                 </div>
                 <div class="p-2 mb-1 text-muted d-flex align-items-center">
@@ -141,7 +141,7 @@ Profile - {{ profile.user.username }}
             </div>
         </div>
         <div id="main-profile" class="col">
-
+            {% include 'snippets/user_posts.html' %}
         </div>
     </div>
 </div>

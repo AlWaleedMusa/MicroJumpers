@@ -36,6 +36,7 @@ def show_user(request, username):
             "profile": profile,
             "confirmed_solutions": confirmed_solutions,
             "is_hx_request": is_hx_request,
+            "posts": Posts.objects.filter(author=user),
         }
         return render(request, "profiles/show_user.html", context)
     else:
