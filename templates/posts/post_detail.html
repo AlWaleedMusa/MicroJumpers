@@ -10,13 +10,13 @@ Post Detail - {{ post.title }}
 
 <div class="container-fluid">
     <div class="row mt-4 d-flex justify-content-center align-items-start">
-        <!-- show post -->
+        <!-- show posts -->
         <div class="col-lg-8">
-            <div class="card p-2">
+            <div class="card p-2" style="max-width: 100%;">
                 <img src="{{ post.uploaded_image.url }}" class="card-img-top post-image" alt="{{ post.title }}">
                 <div class="card-body mt-3">
-                    <div class="d-flex justify-content-between align-content-center">
-                        <h2 class="card-title">{{ post.title }}</h2>
+                    <div class="d-flex justify-content-between align-content-center" style="min-width: 0;">
+                        <h2 class="card-title" style="flex-grow: 1; flex-shrink: 1; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: normal;">{{ post.title }}</h2>
                         <div>
                             {% if request.user == post.author %}
                             <div class="dropdown">
@@ -222,7 +222,7 @@ Post Detail - {{ post.title }}
                             hx-target="#main-content"
                             hx-swap="innerHTML"
                             class="list-group-item list-group-item-action d-flex"
-                            style="cursor: pointer;"
+                            style="cursor: pointer; position: relative;"
                         >
                             <div>
                                 <img
@@ -232,13 +232,11 @@ Post Detail - {{ post.title }}
                                     style="max-height: 100px; height: 100px; width: 150px; max-width: 150px; object-fit: fill;"
                                 />
                             </div>
-                            <div class="ms-3 w-100">
-                                <div>
-                                    <h6 class="mb-1">{{ post.title }}</h6>
-                                </div>
-                                <div class="d-flex justify-content-between h-75 align-items-end" >
-                                    <small>{{ post.created_at|date:"Y, M, d" }}</small>
-                                    <small>{{ post.author }}</small>
+                            <div class="ms-3" style="flex-grow: 1; max-width: calc(100% - 150px);">
+                                <h6 class="mb-1 pb-3" style="word-wrap: break-word; white-space: normal;">{{ post.title }}</h6>
+                                <div class="d-flex justify-content-between h-75 align-items-end">
+                                    <small style="position: absolute; bottom: 5px;">{{ post.created_at|date:"Y, M, d" }}</small>
+                                    <small style="position: absolute; bottom: 5px; right: 10px;">{{ post.author }}</small>
                                 </div>
                             </div>
                         </a>

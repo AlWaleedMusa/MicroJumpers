@@ -6,8 +6,11 @@
             style="width: 50px; height: 50px; object-fit: cover;"
         >
         <a
+            hx-get="{% url 'show_user' comment.author %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
             class="me-1"
-            style="color: rgb(75, 75, 75); font-weight: 500;"
+            style="color: rgb(75, 75, 75); font-weight: 500; cursor: pointer;"
             >{{ comment.author }}</a>
             {% if comment.author == comment.post.author %}
                 <small class="badge text-bg-dark">Author</small>
