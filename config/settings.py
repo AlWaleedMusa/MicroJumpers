@@ -98,7 +98,7 @@ STORAGES = {
         "BACKEND": "storages.backends.dropbox.DropboxStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
