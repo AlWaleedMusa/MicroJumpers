@@ -92,7 +92,6 @@ DATABASES = {
 database_url = os.getenv("DATABASE_URL")
 DATABASES["default"] = dj_database_url.parse(database_url)
 
-DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
 
 STORAGES = {
     "staticfiles": {
@@ -153,15 +152,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-if DEBUG:
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
-else:
-    # Use PythonAnywhere for media files in production
-    DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
-    FTP_STORAGE_LOCATION = os.getenv("FTP_STORAGE_LOCATION")
-    MEDIA_URL = os.getenv("MEDIA_URL")
-    MEDIA_ROOT = os.getenv("MEDIA_ROOT")
+# if DEBUG:
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = BASE_DIR / 'media'
+# else:
+
+# Use PythonAnywhere for media files in production
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
+FTP_STORAGE_LOCATION = os.getenv("FTP_STORAGE_LOCATION")
+MEDIA_URL = os.getenv("MEDIA_URL")
+MEDIA_ROOT = os.getenv("MEDIA_ROOT")
 
 
 
