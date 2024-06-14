@@ -158,7 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 if DEBUG:
     MEDIA_URL = "media/"
 else:
-    MEDIA_URL = f'https://www.dropbox.com/home/MicroJumpers/media'
+    MEDIA_URL = f'https://www.dropbox.com/home/'
 
 
 
