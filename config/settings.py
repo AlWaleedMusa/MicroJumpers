@@ -94,9 +94,6 @@ DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.dropbox.DropboxStorage",
-    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -104,10 +101,10 @@ STORAGES = {
 
 
 # Dropbox settings
-DROPBOX_OAUTH2_TOKEN = os.getenv("DROPBOX_OAUTH2_TOKEN")
-DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv("DROPBOX_OAUTH2_REFRESH_TOKEN")
-DROPBOX_APP_SECRET = os.getenv("DROPBOX_APP_SECRET")
-DROPBOX_APP_KEY = os.getenv("DROPBOX_APP_KEY")
+# DROPBOX_OAUTH2_TOKEN = os.getenv("DROPBOX_OAUTH2_TOKEN")
+# DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv("DROPBOX_OAUTH2_REFRESH_TOKEN")
+# DROPBOX_APP_SECRET = os.getenv("DROPBOX_APP_SECRET")
+# DROPBOX_APP_KEY = os.getenv("DROPBOX_APP_KEY")
 
 
 # Password validation
@@ -155,10 +152,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-# if DEBUG:
-    # MEDIA_URL = "media/"
-# else:
-MEDIA_URL = '/media/'
+MEDIA_URL = os.getenv("MEDIA_URL")
+MEDIA_ROOT = os.getenv("MEDIA_ROOT")
 
 
 
