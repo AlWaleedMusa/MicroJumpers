@@ -92,11 +92,9 @@ DATABASES = {
 database_url = os.getenv("DATABASE_URL")
 DATABASES["default"] = dj_database_url.parse(database_url)
 
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
 
 STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.ftp.FTPStorage"
-    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
