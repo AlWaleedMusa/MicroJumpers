@@ -4,4 +4,3 @@ media/
 migrations/
 static/images/
 *.sqlite3
-/staticfiles/
