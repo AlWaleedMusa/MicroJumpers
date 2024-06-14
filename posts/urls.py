@@ -9,7 +9,7 @@ urlpatterns = [
     path("delete/<str:pk>/", views.delete_post, name="delete_post"),
     path("tag_view/<str:slug>/", views.tag_view, name="tag_view"),
     path("like/<str:pk>/", views.like_post, name="like_post"),
-    path("bookmark/<str:pk>", views.bookmark_post, name="bookmark_post"),
+    path("bookmark/<str:pk>/", views.bookmark_post, name="bookmark_post"),
     # comments
     path("add_comment/<str:pk>/", views.add_comment, name="add_comment"),
     path("edit_comment/<str:pk>/", views.edit_comment, name="edit_comment"),
