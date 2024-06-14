@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 import dj_database_url
 from dotenv import load_dotenv
 import os
@@ -186,13 +185,3 @@ else:
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-
-
-# Superuser creation logic
-if not User.objects.filter(username="admin").exists():
-    User.objects.create_superuser(
-        "admin", "email@email.com", os.getenv("ADMIN_PASSWORD")
-    )
-    print("Superuser created.")
-else:
-    print("Superuser already exists.")
