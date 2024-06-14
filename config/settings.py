@@ -155,10 +155,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-if DEBUG:
-    MEDIA_URL = "media/"
-else:
-    MEDIA_URL = f'https://www.dropbox.com/home/'
+# if DEBUG:
+    # MEDIA_URL = "media/"
+# else:
+MEDIA_URL = '/media/'
 
 
 
