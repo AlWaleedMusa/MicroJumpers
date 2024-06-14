@@ -95,8 +95,7 @@ DATABASES["default"] = dj_database_url.parse(database_url)
 
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.ftp.FTPStorage",
-
+        "BACKEND": "django.core.files.storage.FileSystemStorage"
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -154,18 +153,9 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-# if DEBUG:
-#     MEDIA_URL = '/media/'
-#     MEDIA_ROOT = BASE_DIR / 'media'
-# else:
-
-# Use PythonAnywhere for media files in production
-FTP_STORAGE_LOCATION = os.getenv("FTP_STORAGE_LOCATION")
-
-MEDIA_URL = os.getenv("MEDIA_URL")
-MEDIA_ROOT = os.getenv("MEDIA_ROOT")
+MEDIA_URL = 'http://100.25.130.239/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
