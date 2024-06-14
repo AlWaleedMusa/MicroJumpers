@@ -6,14 +6,6 @@ from pathlib import Path
 
 load_dotenv()
 
-
-# Superuser creation logic
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'email@email.com', os.getenv('ADMIN_PASSWORD'))
-    print('Superuser created.')
-else:
-    print('Superuser already exists.')
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -194,3 +186,13 @@ else:
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
+
+
+# Superuser creation logic
+if not User.objects.filter(username="admin").exists():
+    User.objects.create_superuser(
+        "admin", "email@email.com", os.getenv("ADMIN_PASSWORD")
+    )
+    print("Superuser created.")
+else:
+    print("Superuser already exists.")
