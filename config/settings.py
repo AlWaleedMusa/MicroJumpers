@@ -98,7 +98,7 @@ STORAGES = {
         "BACKEND": "storages.backends.dropbox.DropboxStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
