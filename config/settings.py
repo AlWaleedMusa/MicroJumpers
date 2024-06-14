@@ -94,6 +94,13 @@ DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 STORAGES = {
+    "default": {
+        "class": "storages.backends.ftp.FTPStorage",
+        "options": {
+            "location": os.getenv("FTP_STORAGE_LOCATION"),
+            "base_url": os.getenv("MEDIA_URL"),
+        },
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
