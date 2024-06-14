@@ -45,6 +45,7 @@
         {% endif %}
     </div>
 </div>
+{% if user.emailaddress_set.all.0.verified %}
 <div
     class="profile-menu-list d-none p-4 mt-2 text-center d-flex flex-column align-items-center"
     style="width: fit-content; max-width: 300px; border-radius: 10px ;background-color: rgba(255, 255, 255, 0.9); position: absolute; right: 45px; z-index: 1000;">
@@ -102,6 +103,7 @@
     </div>
     <!-- end of mobile view menu -->
 <!-- end of navbar -->
+{% endif %}
 
 <script>
     const profileMenuItem = document.querySelector('.profile-menu-item');
