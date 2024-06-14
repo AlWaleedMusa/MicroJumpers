@@ -154,11 +154,14 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+DROPBOX_ROOT_PATH = 'media/'
 
 if DEBUG:
     MEDIA_URL = "media/"
 else:
-    MEDIA_URL = "https://www.dropbox.com/home/Apps/microjumpers"
+    MEDIA_URL = f'https://www.dropbox.com/home/{DROPBOX_ROOT_PATH}/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
