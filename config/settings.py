@@ -95,7 +95,7 @@ DATABASES["default"] = dj_database_url.parse(database_url)
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage"
+        "BACKEND": "storages.backends.dropbox.DropBoxStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -104,10 +104,10 @@ STORAGES = {
 
 
 # Dropbox settings
-# DROPBOX_OAUTH2_TOKEN = os.getenv("DROPBOX_OAUTH2_TOKEN")
-# DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv("DROPBOX_OAUTH2_REFRESH_TOKEN")
-# DROPBOX_APP_SECRET = os.getenv("DROPBOX_APP_SECRET")
-# DROPBOX_APP_KEY = os.getenv("DROPBOX_APP_KEY")
+DROPBOX_OAUTH2_TOKEN = os.getenv("DROPBOX_OAUTH2_TOKEN")
+DROPBOX_OAUTH2_REFRESH_TOKEN = os.getenv("DROPBOX_OAUTH2_REFRESH_TOKEN")
+DROPBOX_APP_SECRET = os.getenv("DROPBOX_APP_SECRET")
+DROPBOX_APP_KEY = os.getenv("DROPBOX_APP_KEY")
 
 
 # Password validation
@@ -154,9 +154,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-MEDIA_URL = 'http://100.25.130.239/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
+MEDIA_URL = "http://100.25.130.239/media/"
+MEDIA_ROOT = "/media/"
 
 
 # Default primary key field type
