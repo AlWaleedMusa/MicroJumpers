@@ -95,11 +95,21 @@ DATABASES["default"] = dj_database_url.parse(database_url)
 
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.dropbox.DropBoxStorage",
+        "BACKEND": "config.utils.CachedDropboxStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.getenv("REDIS_URL"),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
 }
 
 
