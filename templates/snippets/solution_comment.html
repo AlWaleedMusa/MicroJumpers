@@ -7,8 +7,11 @@
             style="width: 50px; height: 50px; object-fit: cover;"
         >
         <a
+            hx-get="{% url 'show_user' post.solution_comment.author.username %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
             class="me-1"
-            style="color: rgb(75, 75, 75); font-weight: 500;"
+            style="color: rgb(75, 75, 75); font-weight: 500; cursor: pointer;"
             >{{ post.solution_comment.author }}</a>
     </div>
     <small>{{ post.solution_comment.created_at|timesince }}</small>
