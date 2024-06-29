@@ -1,5 +1,5 @@
 from .models import Profile
-from .forms import EditProfile
+from .forms import EditProfile, ProfilePicForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.dispatch import receiver
 from django.shortcuts import render, get_object_or_404, redirect
 from posts.models import Posts, Comments
+from django.contrib import messages
 
 
 @receiver(post_save, sender=User)
@@ -29,6 +30,7 @@ def show_user(request, username):
         author=user, mark_solution=True
     ).count()
     is_hx_request = request.headers.get("HX-Request") == "true"
+    profile_picture_form = ProfilePicForm()
 
     if request.user.username == username:
 
@@ -37,6 +39,7 @@ def show_user(request, username):
             "confirmed_solutions": confirmed_solutions,
             "is_hx_request": is_hx_request,
             "posts": Posts.objects.filter(author=user),
+            "form": profile_picture_form
         }
         return render(request, "profiles/show_user.html", context)
     else:
@@ -124,6 +127,25 @@ def edit_profile(request, username):
 
     form = EditProfile(instance=profile.user_profile, user=user)
     return render(request, "profiles/edit_profile_settings.html", {"form": form})
+
+
+def edit_picture(request, username):
+    profile = get_object_or_404(Profile, user=request.user)
+
+    if request.method == "POST":
+        form = ProfilePicForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data["image"])
+            profile.image = form.cleaned_data["image"]
+            profile.save()
+            messages.success(request, "Changed Successfully")
+            return redirect("show_user", username=username)
+    else:
+        return render(
+            request,
+            "profiles/edit_profile_settings.html",
+            {"form": form, "profile": profile},
+        )
 
 
 def contact_me(request, username):

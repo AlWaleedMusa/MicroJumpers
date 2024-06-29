@@ -21,3 +21,11 @@ class EditProfile(ModelForm):
         if commit:
             profile.save()
         return profile
+
+
+class ProfilePicForm(ModelForm):
+    """edit profile picture"""
+
+    class Meta:
+        model = Profile
+        fields = ["image"]

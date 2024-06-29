@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load widget_tweaks %}
 {% block head_title %}
 Profile - {{ profile.user.username }}
 {% endblock head_title %}
@@ -55,6 +56,10 @@ Profile - {{ profile.user.username }}
         color: #6c757d;
     }
 
+    .profile-edit {
+        opacity: 20%;
+    }
+
 </style>
 
 <div class="container-fluid">
@@ -78,11 +83,24 @@ Profile - {{ profile.user.username }}
                 </div>
             </div>
             <!-- end of search bar -->
-            <img
-                class="rounded-circle mx-auto d-block"
-                src="{{ profile.image.url }}" alt=""
-                style="width: 100px; height: 100px; object-fit: cover;"
-            >
+            <div style="position: relative">
+                <img
+                    id="profile-img"
+                    class="rounded-circle mx-auto d-block"
+                    src="{{ profile.image.url }}" alt=""
+                    style="width: 100px; height: 100px; object-fit: cover; cursor: pointer;"
+                >
+                <p id="profile-img-text" class="d-none m-0 p-0" style="font-weight: 500; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">Edit</p>
+            </div>
+            <div id="profile-form" class="d-none">
+                <form id="img-form" action="{% url 'edit_picture' profile.user.username %}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {% render_field form.image id="img-input" class="form-control mt-3" %}
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="d-none">Save</button>
+                    </div>
+                </form>
+            </div>
             <h3 class="pt-3">{{ profile.user.username }}</h3>
             <div>
                 {% if confirmed_solutions < 6 %}
@@ -157,5 +175,14 @@ Profile - {{ profile.user.username }}
             item.classList.add('active');
         });
     });
+
+    document.getElementById("profile-img").onclick = function () {
+        document.getElementById("profile-form").classList.toggle('d-none');
+        document.getElementById("profile-img-text").classList.toggle('d-none');
+        document.getElementById("profile-img").classList.toggle("profile-edit")
+    };
+    document.getElementById("img-input").onchange = function () {
+        document.getElementById("img-form").submit();
+    }
 </script>
 {% endblock %}
