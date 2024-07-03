@@ -7,24 +7,181 @@
 {% include 'snippets/messages.html' %}
 
 <!-- hero section -->
-<section>
-    <div class="container-fluid">
+<section id="top">
+    <div class="container-fluid" style="height: 100vh;">
         <div class="row">
             <div class="col-lg-7 col mx-auto text-center mt-lg-3 pt-lg-3 pt-5 mt-5">
                 <p class="big-header pt-md-5">Fixing Phones & Building Bonds</p>
                 <p class="small-text">
                     a hub where we offer solutions for every phone hiccup, from
                     software tweaks to micro soldering, our community driven
-                    platform is your go to resource join us to learn, share, and
-                    conquer mobile challenges
+                    platform is your go to resource, join us to learn, share, and
+                    conquer mobile repair challenges.
                 </p>
                 <div class="d-flex justify-content-center mt-4">
-                    <a href="{% url 'account_signup' %}" class="btn me-3" style="font-weight: 500;">Join now</a>
-                    <a href="{% url 'account_login' %}" class="btn" style="font-weight: 500;">Login</a>
+                    <a href="{% url 'account_signup' %}" class="btn me-3" style="font-weight: 500; padding: 10px 40px;">Get Started</a>
+                    <a href="{% url 'account_login' %}" class="btn d-lg-none d-block" style="font-weight: 500;">Login</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- end of hero section -->
+
+<!-- main landing content -->
+<div class="container-fluid" style="position: relative; top: 91vh; margin-top: -100vh;">
+    <div class="row">
+        <div class="col p-3" style="background: #212631;">
+            <!-- how dose it work -->
+            <section id="how-it-works">
+                <h1 class="text-center mt-5" style="color: white;">How Dose It Work?</h1>
+                <div class="container pt-2">
+                    <div class="row">
+                        <div class="col-lg-6 text-center">
+                            <h3 class="mt-4 mt-lg-0" style="color: var(--primary-color);">1. Ask a Question</h3>
+                            <p class="text-white">Post your questions and get answers from experts.</p>
+                        </div>
+                        <div class="col-lg-6 d-lg-block d-none">
+                            <img style="width: 100%;" src="/static/images/new-post.png" alt="">
+                        </div>
+                        <div class="col-lg-6 d-lg-none d-block">
+                            <img style="width: 100%;" src="/static/images/new-post-mobile .png" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 order-lg-2 text-center">
+                            <h3 class="mt-5 mt-lg-0" style="color: var(--primary-color);">2. Provide Answers</h3>
+                            <p class="text-white">Help others by sharing your knowledge.</p>
+                        </div>
+                        <div class="col-lg-6 d-lg-block d-none">
+                            <img style="width: 100%;" src="/static/images/comment.png" alt="">
+                        </div>
+                        <div class="col-lg-6 d-lg-none d-block">
+                            <img style="width: 100%;" src="/static/images/comment-mobile.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 text-center">
+                            <h3 class="mt-5 mt-lg-0" style="color: var(--primary-color);">3. Mark Solutions</h3>
+                            <p class="text-white">Identify the best answer to help others quickly find solutions.</p>
+                        </div>
+                        <div class="col-lg-6 d-lg-block d-none">
+                            <img style="width: 100%;" src="/static/images/solution.png" alt="">
+                        </div>
+                        <div class="col-lg-6 d-lg-none d-block">
+                            <img style="width: 100%;" src="/static/images/solution-mobile.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end of how dose it work -->
+
+            <!-- what our members say -->
+            <section id="members-testimony">
+                <div class="container-lg-fluid text-center">
+                    <h1 class="mt-5" style="color: white;">What our members say</h1>
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-md-4 m-lg-0 mt-5">
+                            <div class="p-5" style="background-color: #ffffffea ;border-radius: 15px;">
+                                <p>
+                                    Whenever I face a challenging issue, I know I can rely on the experts here to provide detailed solutions and insights. The ability to mark comments as solutions has made it so much easier to find the best answers quickly. MicroJumpers is now my go-to resource for staying updated with the latest tools and techniques in the industry.
+                                </p>
+                                <p class="p-0 m-0" style="font-weight: 500; color: var(--primary-color);">Yousif Musa</p>
+                                <small class="text-muted d-block ">Junior Technician</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4 m-lg-0 mt-5">
+                            <div class="p-5" style="background-color: #ffffffea ;border-radius: 15px;">
+                                <p>
+                                    As a mobile repair technician, finding reliable and up-to-date information can be a challenge. MicroJumpers has filled that gap perfectly. The platform offers a wealth of knowledge, and the community is always willing to help out. The feature that allows post authors to mark comments as solutions is incredibly useful, ensuring that the most effective answers are highlighted
+                                </p>
+                                <p class="p-0 m-0 text-center" style="font-weight: 500; color: var(--primary-color);">Salma Ibrahim</p>
+                                <small class="text-muted d-block text-center">Mobile Device Specialist</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4 m-lg-0 mt-5">
+                            <div class="p-5" style="background-color: #ffffffea ;border-radius: 15px;">
+                                <p>
+                                    The platform is a treasure trove of information, with technicians from all over the world sharing their expertise. The collaborative environment has helped me improve my skills and solve problems faster than ever before. The tool review section is particularly valuable, giving me firsthand insights into the best tools available in the market
+                                </p>
+                                <p class="p-0 m-0" style="font-weight: 500; color: var(--primary-color);">Ben Smith</p>
+                                <small class="text-muted d-block ">Store owner, Senior Technician</small>
+                            </div>
+                        </div>
+                    </div>
+                <div>
+            </section>
+            <!-- end of what our members say -->
+
+            <!-- our impact -->
+            <section id="our-impact">
+                <div class="container-lg-fluid text-center">
+                    <h1 class="mt-5" style="color: white;">Our Impact</h1>
+                    <div class="row d-flex justify-content-between mt-5" style="border-radius: 15px; height: max-content;">
+                        <div class="col-md-3 m-lg-0 mt-5 text-white">
+                            <div class="p-3">
+                                <h2>{{ user_count }}+</h2>
+                                <img class="d-block mx-auto" src="/static/images/add-users.png" alt="">
+                                <p>Active users worldwide</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 m-lg-0 mt-5 text-white">
+                            <div class="p-3">
+                                <h2 class="d-block">{{ solutions_count }}+</h2>
+                                <img class="d-block mx-auto mt-4 pb-4" src="/static/images/accept.png" alt="">
+                                <p>Problems solved</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 m-lg-0 mt-5 text-white">
+                            <div class="p-3">
+                                <h2 class="d-block">{{ reviews_count }}+</h2>
+                                <img class="d-block mx-auto mb-2" src="/static/images/review.png" alt="">
+                                <p>Tools reviewed</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 m-lg-0 mt-5 text-white">
+                            <div class="p-3">
+                                <h2 class="d-block">{{ country_count }}+</h2>
+                                <img class="d-block mx-auto mb-2" src="/static/images/global-communication.png" alt="">
+                                <p>Countries represented</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end of our impact  -->
+
+            <!-- join us -->
+            <section id="join-us-now">
+                <div class="container-lg-fluid text-center">
+                    <div class="mt-5 pt-5">
+                        <div class="col-lg-6 p-5 mx-auto" style="border: 1px solid rgba(128, 128, 128, 0.473); border-radius: 15px; box-shadow: 0px 0px 10px var(--primary-color);">
+                            <h1 style="color: white;">Join our Community</h1>
+                            <p style="color: white;">
+                                Are you ready to elevate your mobile repair skills and connect with technicians worldwide? Sign up today and become part of a thriving community dedicated to sharing knowledge and solving problems together.
+                            </p>
+                            <a href="{% url 'account_signup' %}" class="btn me-3 mt-2" style="font-weight: 500; padding: 10px 40px; background-color: white; color: var(--primary-color);">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end of join us -->
+
+            <!-- footer -->
+            <div class="container">
+                <footer class="py-1 my-2">
+                    <ul class="nav justify-content-center pb-3 mb-3 mt-5" style="border-top: 1px solid gray;">
+                        <li class="nav-item"><a href="#top" class="nav-link px-2 text-white">Home</a></li>
+                        <li class="nav-item"><a href="#how-it-works" class="nav-link px-2 text-white">How dose it works</a></li>
+                        <li class="nav-item"><a href="#members-testimony" class="nav-link px-2 text-white">Testimonies</a></li>
+                        <li class="nav-item"><a href="#our-impact" class="nav-link px-2 text-white">Our impact</a></li>
+                    </ul>
+                    <p class="text-center text-white">© {% now "Y" %} MicroJumpers, Inc</p>
+                </footer>
+            </div>
+            <!-- end of footer -->
+        </div>
+    </div>
+</div>
+<!-- end of main landing content -->
 {% endblock %}

@@ -1,16 +1,34 @@
 from allauth.account.decorators import verified_email_required, login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q, Count
-from posts.models import Posts
+from django.db.models import Q, Count, Sum
+from posts.models import Posts, Comments
+from taggit.models import Tag
 from profiles.models import Profile
+
 
 # tested
 def landing_page(request):
-    """Render the landing page."""
+    """Render the landing page with dynamic data for impact section"""
+    users_count = User.objects.all().count
+    solutions_count = Comments.objects.all().filter(mark_solution=True).count()
+
+    tags_with_review = Tag.objects.filter(name__icontains="review")
+    tags_with_review_count = tags_with_review.annotate(posts_count=Count('posts'))
+    reviews_count = tags_with_review_count.aggregate(total_mentions=Sum('posts_count'))['total_mentions']
+    
+    all_countries = Profile.objects.exclude(location__isnull=True).values_list('location', flat=True)
+    country_count = len(set(all_countries))
+    
+    context = {
+        "user_count": users_count,
+        "solutions_count": solutions_count,
+        "reviews_count": reviews_count,
+        "country_count": country_count
+    }
     if request.user.is_authenticated:
         return redirect("home")
-    return render(request, "core/landing_page.html")
+    return render(request, "core/landing_page.html", context)
 
 
 # tested

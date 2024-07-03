@@ -1,0 +1,85 @@
+@media screen and (max-width: 576px) {
+    .navbar-brand {
+        margin-top: 2em;
+    }
+
+    .big-header {
+        font-size: 35px;
+    }
+
+    .small-text {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
+@media screen and (min-width: 576px) {
+    .big-header {
+        font-size: 55px;
+    }
+
+    .small-text {
+        font-size: 25px;
+    }
+
+    .btn {
+        padding: 10px 25px;
+        font-size: 15px;
+    }
+}
+
+body {
+    min-width: 320px;
+    font-family: "roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+.show-background {
+	background-color: whitesmoke;
+  }
+
+.show-image {
+    background-image: url("/static/images/man-8312827_1280.cf0fc2c42d71.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.64);
+    background-blend-mode: color;
+    height: 100vh;
+}
+
+.big-header {
+    font-weight: 900;
+    color: white;
+}
+
+.small-text {
+    color: white;
+    font-weight: 300;
+}
+
+.btn:nth-child(1) {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 300;
+}
+
+.btn:nth-child(2) {
+    background-color: white;
+    color: var(--primary-color);
+    font-weight: 300;
+}
+
+.btn {
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none;
+}

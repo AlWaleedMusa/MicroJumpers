@@ -42,7 +42,7 @@
     </head>
     <body
         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-        class="{% if not user.is_authenticated %} show-image {% else %} show-background {% endif %}" style="overflow-x: hidden;">
+        class="{% if not user.is_authenticated %} show-image {% else %} show-background {% endif %}">
         {% block content %}
 
         {% endblock %}
