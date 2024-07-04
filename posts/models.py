@@ -36,13 +36,6 @@ class Posts(models.Model):
         blank=True,
         null=True,
     )
-    # solved_by = models.ForeignKey(
-    #     User,
-    #     on_delete=models.CASCADE,
-    #     related_name="solved_posts",
-    #     blank=True,
-    #     null=True,
-    # )
     tags = TaggableManager(through=UUIDTaggedItem)
     likes = models.ManyToManyField(User, related_name="liked_posts", blank=True)
     bookmarks = models.ManyToManyField(
@@ -79,19 +72,6 @@ class Comments(models.Model):
 
         ordering = ["-created_at"]
         verbose_name_plural = "Comments"
-
-    @classmethod
-    def get_top_liked_comments(cls, post, min_likes=3, num_comments=3):
-        """
-        Retrieve the top liked comments.
-        """
-        top_liked_comments = cls.objects.filter(post=post).annotate(
-            num_likes=Count("likes")
-        )
-        top_liked_comments = top_liked_comments.exclude(num_likes__lt=min_likes)
-        top_liked_comments = top_liked_comments.order_by("-num_likes")[:num_comments]
-
-        return top_liked_comments
 
 
 class Reports(models.Model):
