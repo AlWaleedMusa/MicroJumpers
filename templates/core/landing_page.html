@@ -38,37 +38,37 @@
                 <div class="container pt-2">
                     <div class="row">
                         <div class="col-lg-6 text-center">
-                            <h3 class="mt-4 mt-lg-0" style="color: var(--primary-color);">1. Ask a Question</h3>
-                            <p class="text-white">Post your questions and get answers from experts.</p>
+                            <h2 class="mt-4 mt-lg-0" style="color: var(--primary-color);">1. Ask a Question</h2>
+                            <h5 class="text-white" style="font-weight: 300;">Post your questions and get answers from experts.</h5>
                         </div>
                         <div class="col-lg-6 d-lg-block d-none">
                             <img style="width: 100%;" src="/static/images/new-post.png" alt="">
                         </div>
-                        <div class="col-lg-6 d-lg-none d-block">
+                        <div class="col-lg-6 d-lg-none d-block mt-3">
                             <img style="width: 100%;" src="/static/images/new-post-mobile .png" alt="">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 order-lg-2 text-center">
-                            <h3 class="mt-5 mt-lg-0" style="color: var(--primary-color);">2. Provide Answers</h3>
-                            <p class="text-white">Help others by sharing your knowledge.</p>
+                            <h2 class="mt-5 mt-lg-0" style="color: var(--primary-color);">2. Provide Answers</h2>
+                            <h5 class="text-white" style="font-weight: 300;">Help others by sharing your knowledge.</h5>
                         </div>
                         <div class="col-lg-6 d-lg-block d-none">
                             <img style="width: 100%;" src="/static/images/comment.png" alt="">
                         </div>
-                        <div class="col-lg-6 d-lg-none d-block">
+                        <div class="col-lg-6 d-lg-none d-block mt-3">
                             <img style="width: 100%;" src="/static/images/comment-mobile.png" alt="">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 text-center">
-                            <h3 class="mt-5 mt-lg-0" style="color: var(--primary-color);">3. Mark Solutions</h3>
-                            <p class="text-white">Identify the best answer to help others quickly find solutions.</p>
+                            <h2 class="mt-5 mt-lg-0" style="color: var(--primary-color);">3. Mark Solutions</h2>
+                            <h5 class="text-white" style="font-weight: 300;">Identify the best answer to help others quickly find solutions.</h5>
                         </div>
                         <div class="col-lg-6 d-lg-block d-none">
                             <img style="width: 100%;" src="/static/images/solution.png" alt="">
                         </div>
-                        <div class="col-lg-6 d-lg-none d-block">
+                        <div class="col-lg-6 d-lg-none d-block mt-3">
                             <img style="width: 100%;" src="/static/images/solution-mobile.png" alt="">
                         </div>
                     </div>
@@ -120,30 +120,30 @@
                     <div class="row d-flex justify-content-between mt-5" style="border-radius: 15px; height: max-content;">
                         <div class="col-md-3 m-lg-0 mt-5 text-white">
                             <div class="p-3">
-                                <h2>{{ user_count }}+</h2>
+                                <h2 style="font-weight: 500;">{{ user_count }}0+</h2>
                                 <img class="d-block mx-auto" src="/static/images/add-users.png" alt="">
-                                <p>Active users worldwide</p>
+                                <h5 style="font-weight: 300;">Active users worldwide</h5>
                             </div>
                         </div>
                         <div class="col-md-3 m-lg-0 mt-5 text-white">
                             <div class="p-3">
-                                <h2 class="d-block">{{ solutions_count }}+</h2>
+                                <h2 class="d-block" style="font-weight: 500;">{{ solutions_count }}0+</h2>
                                 <img class="d-block mx-auto mt-4 pb-4" src="/static/images/accept.png" alt="">
-                                <p>Problems solved</p>
+                                <h5 style="font-weight: 300;">Problems solved</h5>
                             </div>
                         </div>
                         <div class="col-md-3 m-lg-0 mt-5 text-white">
                             <div class="p-3">
-                                <h2 class="d-block">{{ reviews_count }}+</h2>
+                                <h2 class="d-block" style="font-weight: 500;">{{ reviews_count }}0+</h2>
                                 <img class="d-block mx-auto mb-2" src="/static/images/review.png" alt="">
-                                <p>Tools reviewed</p>
+                                <h5 style="font-weight: 300;">Tools reviewed</h5>
                             </div>
                         </div>
                         <div class="col-md-3 m-lg-0 mt-5 text-white">
                             <div class="p-3">
-                                <h2 class="d-block">{{ country_count }}+</h2>
+                                <h2 class="d-block" style="font-weight: 500;">{{ country_count }}0+</h2>
                                 <img class="d-block mx-auto mb-2" src="/static/images/global-communication.png" alt="">
-                                <p>Countries represented</p>
+                                <h5 style="font-weight: 300;">Countries represented</h5>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                     <div class="mt-5 pt-5">
                         <div class="col-lg-6 p-5 mx-auto" style="border: 1px solid rgba(128, 128, 128, 0.473); border-radius: 15px; box-shadow: 0px 0px 10px var(--primary-color);">
                             <h1 style="color: white;">Join our Community</h1>
-                            <p style="color: white;">
+                            <p style="color: white; font-weight: 400;">
                                 Are you ready to elevate your mobile repair skills and connect with technicians worldwide? Sign up today and become part of a thriving community dedicated to sharing knowledge and solving problems together.
                             </p>
                             <a href="{% url 'account_signup' %}" class="btn me-3 mt-2" style="font-weight: 500; padding: 10px 40px; background-color: white; color: var(--primary-color);">Get Started</a>
