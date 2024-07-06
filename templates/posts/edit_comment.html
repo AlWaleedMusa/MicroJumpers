@@ -16,7 +16,7 @@ Edit comment
             hx-swap="innerHTML"
         >
             {% csrf_token %} {% render_field form.body %}
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-start">
                 <button type="submit" class="btn me-2" style="background-color: var(--primary-color); color: white; font-weight: 500;">
                     Save
                 </button>
