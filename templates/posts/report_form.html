@@ -21,7 +21,26 @@ Report {% if post %} {{ post.title }} {% else %} comment {% endif %}
         {% csrf_token %}
         {% render_field form.reason|add_class:"form-control" style="margin-bottom: 10px;" %}
         {% render_field form.description %}
-        <button type="submit" class="btn btn-danger mt-1">Submit Report</button>
+        <button type="submit" class="btn btn-danger mt-1">Report</button>
+        {% if post %}
+        <a
+            hx-get="{% url 'post_detail' post.id %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
+            class="btn text-white mt-1"
+            style="background-color: grey; font-weight: 500;"
+            >Back</a
+        >
+        {% else %}
+        <a
+            hx-get="{% url 'post_detail' comment.post.id %}"
+            hx-target="#main-content"
+            hx-swap="innerHTML"
+            class="btn text-white mt-1"
+            style="background-color: grey; font-weight: 500;"
+            >Back</a
+        >
+        {% endif %}
     </form>
 </div>
 {% endblock %}
