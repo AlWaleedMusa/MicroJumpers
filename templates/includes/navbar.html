@@ -11,6 +11,7 @@
             viewBox="0 0 46 46"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"
         >
             <path
                 d="M9.58325 13.4167H36.4166"
@@ -63,9 +64,7 @@
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
             </svg>
             <a
-            hx-get="{% url 'show_user' user.username %}"
-            hx-target="#main-content"
-            hx-swap="innerHTML"
+            href="{% url 'show_user' request.user.username %}"
             class="ps-2 text-start text-muted" style="cursor: pointer;"
             >Profile</a>
         </div>
@@ -87,19 +86,32 @@
 
 <!-- navbar -->
     <!-- mobile view menu -->
-    <div id="menu-items" class="d-none">
-        <ul>
-            <a
-                hx-get="{% url 'show_user' request.user.username %}"
-                hx-target="#main-content"
-                hx-swap="innerHTML"
-                style="cursor: pointer; color: var(--secondary-color);"><li>Profile</li></a>
-            <a
-                hx-get="{% url 'account_logout' %}"
-                hx-swap="outerHTML"
-                hx-target="#main-content"
-                style="cursor: pointer; color: var(--secondary-color);"><li>Logout</li></a>
-        </ul>
+    <div class="offcanvas offcanvas-top mx-auto" style="height: max-content; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+        <div class="offcanvas-header">
+          <button id="close-btn" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body text-center">
+            <img
+            class="rounded-circle mx-auto d-block"
+            src="{{ profile.image.url }}" alt=""
+            style="width: 100px; height: 100px; object-fit: cover;"
+            >
+            <h4 class="pt-3">{{ profile.user.username }}</h4>
+            <p class="text-muted">{{ profile.location }}</p>
+            <p class="text-muted">Joined - {{ profile.user.date_joined|date:"F d, Y" }}</p>
+            <ul class="list-unstyled pt-2 border-top">
+                <a
+                    class="text-muted mobile-menu"
+                    href="{% url 'show_user' request.user.username %}"
+                    style="cursor: pointer; color: var(--secondary-color);"><li style="padding-top: 10px;"><h5>Profile</h5></li></a>
+                <a
+                    class="text-danger mobile-menu"
+                    hx-get="{% url 'account_logout' %}"
+                    hx-swap="outerHTML"
+                    hx-target="#main-content"
+                    style="cursor: pointer; color: var(--secondary-color);"><li style="padding-top: 10px;"><h5>Logout</h5></li></a>
+            </ul>
+        </div>
     </div>
     <!-- end of mobile view menu -->
 <!-- end of navbar -->
@@ -116,5 +128,14 @@
     profileMenuList.addEventListener('mouseleave', () => {
         profileMenuList.classList.toggle('d-none');
     });
+
+
+    const mobileProfileMenuList = document.querySelectorAll(".mobile-menu")
+
+    mobileProfileMenuList.forEach(item => {
+        item.addEventListener("click", function() {
+            closeButton = document.getElementById("close-btn").click()
+        })
+    })
 
 </script>
