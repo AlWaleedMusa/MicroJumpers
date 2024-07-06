@@ -52,7 +52,7 @@ Profile - {{ profile.user.username }}
                 src="{{ profile.image.url }}" alt=""
                 style="width: 100px; height: 100px; object-fit: cover;"
             >
-            <h3 class="pt-3">{{ profile.user.username }}</h3>
+            <h4 class="pt-3">{{ profile.user.username }}</h4>
             <div>
                 {% if confirmed_solutions < 6 %}
                     <span class="badge text-bg-success ms-lg-1">Rookie</span>
@@ -67,7 +67,8 @@ Profile - {{ profile.user.username }}
                 <small class="badge text-bg-success" >{{ profile.user_type }}</small>
             {% endif %}
             </div>
-            <p class="text-muted p-2">Joined - {{ profile.user.date_joined|date:"F d, Y" }}</p>
+            <p class="text-muted mt-2">{{ profile.location }}</p>
+            <p class="text-muted">Joined - {{ profile.user.date_joined|date:"F d, Y" }}</p>
             <div class="profile-counter">
                 <div class="counter-text">
                     <h2 id="confirmed-answers-count">{{ confirmed_solutions }}</h2>
