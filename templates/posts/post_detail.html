@@ -13,7 +13,7 @@ Post Detail - {{ post.title }}
         <!-- show posts -->
         <div class="col-lg-8">
             <div class="card p-2" style="max-width: 100%;">
-                <img src="{{ post.uploaded_image.url }}" class="card-img-top post-image" alt="{{ post.title }}">
+                <img src="{{ post.uploaded_image.url }}" style="object-fit: fill;" class="card-img-top post-image" alt="{{ post.title }}">
                 <div class="card-body mt-3">
                     <div class="d-flex justify-content-between align-content-center" style="min-width: 0;">
                         <h2 class="card-title" style="flex-grow: 1; flex-shrink: 1; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: normal;">{{ post.title }}</h2>
